@@ -2,6 +2,8 @@
 
 ## A Logo Design for Muso Dojo
 
+View the rendered HTML page here: https://conor-dowdall.github.io/musodojo-logo/
+
 Designed using CSS properties
 
 ```css
@@ -20,7 +22,7 @@ background-clip: text;
 color: transparent;
 ```
 
-and the Stick-Regular font, downloaded from Google Fonts.
+and the Stick-Regular font (https://github.com/fontworks-fonts/Stick), downloaded from Google Fonts.
 
 ```css
 @import url("https://fonts.googleapis.com/css2?family=Stick&display=swap");

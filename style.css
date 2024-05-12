@@ -14,17 +14,10 @@ body {
   background-color: black;
 }
 
-div.logos-wrapper {
-  max-width: min(100%, 50rem);
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4rem;
-}
-
 div.logo {
   display: grid;
   place-items: center;
-  font-size: 5rem;
+  font-size: 7rem;
   width: 1.75em;
   aspect-ratio: 1;
   background-color: white;
