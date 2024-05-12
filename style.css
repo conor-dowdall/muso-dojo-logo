@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Stick&display=swap");
 
+:root {
+  --letter-size: 10rem;
+}
+
 .stick-regular {
   font-family: "Stick", sans-serif;
   font-weight: 400;
@@ -17,8 +21,8 @@ body {
 div.logo {
   display: grid;
   place-items: center;
-  font-size: 7rem;
-  width: 1.75em;
+  font-size: var(--letter-size);
+  width: 1.1em;
   aspect-ratio: 1;
   background-color: white;
   border-radius: 50%;
@@ -26,6 +30,7 @@ div.logo {
 
 div.logo-text {
   font-weight: bold;
+  line-height: 0.64;
   background-image: linear-gradient(
     90deg,
     red,
