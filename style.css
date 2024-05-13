@@ -1,7 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Stick&display=swap");
 
 :root {
-  --letter-size: 10rem;
+  --logo-letter-size: 10rem;
+  color-scheme: dark;
 }
 
 .stick-regular {
@@ -14,34 +15,35 @@ body {
   margin: 0;
   display: grid;
   min-height: 100svh;
-  place-items: center;
-  background-color: black;
+  align-content: center;
+  justify-items: center;
+}
+
+h1 {
+  font-size: 4rem;
 }
 
 div.logo {
   display: grid;
   place-items: center;
-  font-size: var(--letter-size);
+  font-size: var(--logo-letter-size);
   width: 1.1em;
   aspect-ratio: 1;
   background-color: white;
   border-radius: 50%;
-}
 
-div.logo-text {
-  font-weight: bold;
-  line-height: 0.64;
-  background-image: linear-gradient(
-    90deg,
-    red,
-    red,
-    orange,
-    yellow,
-    green,
-    blue,
-    indigo,
-    violet
-  );
-  background-clip: text;
-  color: transparent;
+  > div.logo-text {
+    font-weight: bold;
+    line-height: 0.62;
+    background-image: linear-gradient(
+      to right,
+      #db2f08 0% 12%,
+      #fadc00 40%,
+      #14d139 60%,
+      #01a5db,
+      #4e2370 90% 100%
+    );
+    background-clip: text;
+    color: transparent;
+  }
 }
