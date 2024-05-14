@@ -13,14 +13,31 @@
 
 body {
   margin: 0;
-  display: grid;
+}
+
+header {
+  margin: auto;
+  max-width: 110rem;
   min-height: 100svh;
-  align-content: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
   justify-items: center;
 }
 
-h1 {
+h1,
+h2 {
   font-size: 4rem;
+  text-align: center;
+  margin: 0;
+}
+
+div.title {
+  justify-self: end;
+}
+
+div.subtitle {
+  justify-self: start;
 }
 
 div.logo {
