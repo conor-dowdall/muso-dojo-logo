@@ -1,7 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Stick&display=swap");
 
 :root {
-  --logo-letter-size: 14rem;
+  --header-max-width: 110rem;
+  --header-font-size: 4rem;
+  --logo-letter-size: 15rem;
   color-scheme: dark;
 }
 
@@ -17,7 +19,7 @@ body {
 
 header {
   margin: auto;
-  max-width: 110rem;
+  max-width: var(--header-max-width);
   min-height: 100svh;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -27,7 +29,7 @@ header {
 
 h1,
 h2 {
-  font-size: 4rem;
+  font-size: var(--header-font-size);
   text-align: center;
   margin: 0;
 }
