@@ -1,16 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Stick&display=swap");
 
 :root {
+  --header-wrapper-max-width: 100%;
   --header-max-width: 110rem;
-  --header-font-size: 4rem;
-  --logo-letter-size: 15rem;
-  color-scheme: dark;
-}
+  --header-min-height: 100svh;
+  --header-gap: 0;
+  --header-font-size: 3rem;
 
-.stick-regular {
-  font-family: "Stick", sans-serif;
-  font-weight: 400;
-  font-style: normal;
+  --logo-letter-size: 10rem;
+  --logo-size: 1.1em;
+
+  color-scheme: dark light;
 }
 
 body {
@@ -18,51 +18,57 @@ body {
 }
 
 header {
-  margin: auto;
-  max-width: var(--header-max-width);
-  min-height: 100svh;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  align-items: center;
-  justify-items: center;
-}
+  > .header-wrapper {
+    font-family: "Stick", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    margin: auto;
+    max-width: var(--header-max-width);
+    min-height: var(--header-min-height);
+    display: flex;
+    gap: var(--header-gap);
+    flex-direction: row;
+    align-items: center;
+    justify-items: center;
 
-h1,
-h2 {
-  font-size: var(--header-font-size);
-  text-align: center;
-  margin: 0;
-}
+    > div {
+      &.title,
+      &.subtitle {
+        flex: 1 0 0;
 
-div.title {
-  justify-self: end;
-}
+        & > h1,
+        h2 {
+          white-space: nowrap;
+          font-size: var(--header-font-size);
+          text-align: center;
+          margin: 0;
+        }
+      }
 
-div.subtitle {
-  justify-self: start;
-}
+      &.logo {
+        flex: 0 0 var(--logo-size);
+        display: grid;
+        place-items: center;
+        font-size: var(--logo-letter-size);
+        aspect-ratio: 1;
+        background-color: white;
+        border-radius: 50%;
 
-div.logo {
-  display: grid;
-  place-items: center;
-  font-size: var(--logo-letter-size);
-  width: 1.1em;
-  aspect-ratio: 1;
-  background-color: white;
-  border-radius: 50%;
-
-  > div.logo-text {
-    font-weight: bold;
-    line-height: 0.62;
-    background-image: linear-gradient(
-      to right,
-      #db2f08 0% 12%,
-      #fadc00 40%,
-      #14d139 60%,
-      #01a5db,
-      #4e2370 90% 100%
-    );
-    background-clip: text;
-    color: transparent;
+        > .logo-text {
+          font-weight: bold;
+          line-height: 0.62;
+          background-image: linear-gradient(
+            to right,
+            #db2f08 0% 12%,
+            #fadc00 40%,
+            #14d139 60%,
+            #01a5db,
+            #4e2370 90% 100%
+          );
+          background-clip: text;
+          color: transparent;
+        }
+      }
+    }
   }
 }
