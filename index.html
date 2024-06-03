@@ -3,26 +3,25 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
     <link rel="apple-touch-icon" href="apple-touch-icon.png" />
     <title>Muso Dojo | Logo</title>
+    <script type="module" src="./md-header.mjs"></script>
+
+    <style>
+      @font-face {
+        font-family: "Stick";
+        src: url("./Stick-Regular.ttf");
+      }
+
+      :root {
+        color-scheme: dark light;
+      }
+    </style>
   </head>
 
   <body>
     <header>
-      <div class="header-wrapper">
-        <div class="title">
-          <h1>Muso Dojo</h1>
-        </div>
-
-        <div class="logo">
-          <div class="logo-text">M</div>
-        </div>
-
-        <div class="subtitle">
-          <h2>Play Music</h2>
-        </div>
-      </div>
+      <md-header></md-header>
     </header>
   </body>
 </html>
