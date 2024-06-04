@@ -2,25 +2,25 @@ const template = document.createElement("template");
 template.innerHTML = /* HTML */ `
   <style>
     .md-header-wrapper {
-      --_header-wrapper-max-width: var(--header-wrapper-max-width, 100%);
-      --_header-max-width: var(--header-max-width, 110rem);
-      --_header-min-height: var(--header-min-height, 100svh);
-      --_header-gap: var(--header-gap, 0);
-      --_header-font-size: var(--header-font-size, 3rem);
+      --_md-header-wrapper-max-width: var(--md-header-wrapper-max-width, 100%);
+      --_md-header-max-width: var(--md-header-max-width, 110rem);
+      --_md-header-min-height: var(--md-header-min-height, 100svh);
+      --_md-header-gap: var(--md-header-gap, 0);
+      --_md-header-font-size: var(--md-header-font-size, 3rem);
 
-      --_logo-letter-size: var(--logo-letter-size, 10rem);
-      --_logo-size: var(--logo-size, 1.4em);
+      --_md-logo-letter-size: var(--md-logo-letter-size, 10rem);
+      --_md-logo-size: var(--md-logo-size, 1.4em);
 
       font-family: "Stick", sans-serif;
       font-weight: 400;
       font-style: normal;
 
       margin: auto;
-      max-width: var(--_header-max-width);
-      min-height: var(--_header-min-height);
+      max-width: var(--_md-header-max-width);
+      min-height: var(--_md-header-min-height);
 
       display: flex;
-      gap: var(--_header-gap);
+      gap: var(--_md-header-gap);
       flex-direction: row;
       align-items: center;
       justify-items: center;
@@ -33,17 +33,17 @@ template.innerHTML = /* HTML */ `
           & > h1,
           h2 {
             white-space: nowrap;
-            font-size: var(--_header-font-size);
+            font-size: var(--_md-header-font-size);
             text-align: center;
             margin: 0;
           }
         }
 
         &.logo {
-          flex: 0 0 var(--_logo-size);
+          flex: 0 0 var(--_md-logo-size);
           display: grid;
           place-items: center;
-          font-size: var(--_logo-letter-size);
+          font-size: var(--_md-logo-letter-size);
           aspect-ratio: 1;
           background-color: white;
           border-radius: 50%;
