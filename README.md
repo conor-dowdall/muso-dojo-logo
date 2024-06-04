@@ -46,11 +46,12 @@ The Stick font must be included in the stylesheet
 may be overwritten, are used
 
 ```css
---_header-wrapper-max-width: var(--header-wrapper-max-width, 100%);
---_header-max-width: var(--header-max-width, 110rem);
---_header-min-height: var(--header-min-height, 100svh);
---_header-gap: var(--header-gap, 0);
---_header-font-size: var(--header-font-size, 3rem);
---_logo-letter-size: var(--logo-letter-size, 10rem);
---_logo-size: var(--logo-size, 1.4em);
+--_md-header-wrapper-max-width: var(--md-header-wrapper-max-width, 100%);
+--_md-header-max-width: var(--md-header-max-width, 110rem);
+--_md-header-min-height: var(--md-header-min-height, 100svh);
+--_md-header-gap: var(--md-header-gap, 0);
+--_md-header-font-size: var(--md-header-font-size, 3rem);
+
+--_md-logo-letter-size: var(--md-logo-letter-size, 10rem);
+--_md-logo-size: var(--md-logo-size, 1.4em);
 ```
