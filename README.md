@@ -41,9 +41,9 @@ The Stick font must be included in the stylesheet
 </style>
 ```
 
-### CSS Custom Properties The following properties and their defaults, which
+### CSS Custom Properties
 
-may be overwritten, are used
+The following properties and their defaults, which may be overwritten, are used
 
 ```css
 --_md-header-wrapper-max-width: var(--md-header-wrapper-max-width, 100%);
