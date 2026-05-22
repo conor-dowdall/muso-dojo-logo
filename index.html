@@ -1,0 +1,1391 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+    <link rel="manifest" href="site.webmanifest" />
+    <title>Muso Dojo | Logo Lab</title>
+    <script type="module" src="./muso-dojo-logo.mjs"></script>
+
+    <style>
+      @font-face {
+        font-family: "Stick";
+        font-display: swap;
+        src: url("./Stick-Regular.ttf") format("truetype");
+      }
+
+      :root {
+        --brand-black: #000000;
+        --brand-white: #ffffff;
+        --page-background: #080808;
+        --page-accent-wash: rgb(var(--theme-rgb) / 0.08);
+        --page-text: #f5f5ef;
+        --page-muted: #bfc5bd;
+        --theme-rgb: 32 202 255;
+        --theme-alt-rgb: 20 209 57;
+        --theme-color: rgb(var(--theme-rgb));
+        --theme-color-strong: #7ee5ff;
+        --theme-border-color: rgb(var(--theme-rgb) / 0.24);
+        --panel-background: #131313;
+        --panel-background-visual:
+          linear-gradient(
+          180deg,
+          rgb(255 255 255 / 0.045),
+          rgb(var(--theme-rgb) / 0.018)
+        ),
+          var(--panel-background);
+        --panel-border-color: #2e2e2e;
+        --panel-shadow: 0 0.7rem 1.6rem rgb(0 0 0 / 0.28);
+        --field-background: #0b0b0b;
+        --field-background-visual:
+          linear-gradient(180deg, rgb(255 255 255 / 0.035), transparent),
+          var(--field-background);
+        --field-text: #f1f1f1;
+        --field-border-color: #3a3a3a;
+        --field-border-color-hover: rgb(var(--theme-rgb) / 0.5);
+        --artboard-border-color: #343434;
+        --artboard-dark-border-color: #2c2c2c;
+        --artboard-shadow: inset 0 1px 0 rgb(255 255 255 / 0.035);
+        --icon-stage-background: #0e0e0e;
+        --icon-card-text: #eeeeea;
+        --caption-text: #c1c7bf;
+        --caption-strong: #f5f5ef;
+        --caption-muted: #9ea69c;
+        --checker-a: #111111;
+        --checker-b: #252525;
+        --focus-color: var(--theme-color);
+        --button-base: #101214;
+        --button-background:
+          linear-gradient(
+          180deg,
+          rgb(255 255 255 / 0.12),
+          rgb(255 255 255 / 0) 48%
+        ),
+          linear-gradient(
+          135deg,
+          rgb(var(--button-theme-rgb, var(--theme-rgb)) / 0.28) 0%,
+          rgb(20 209 57 / 0.14) 54%,
+          rgb(255 216 74 / 0.12) 100%
+        ),
+          var(--button-base);
+        --button-background-hover:
+          linear-gradient(
+          180deg,
+          rgb(255 255 255 / 0.16),
+          rgb(255 255 255 / 0) 48%
+        ),
+          linear-gradient(
+          135deg,
+          rgb(var(--button-theme-rgb, var(--theme-rgb)) / 0.38) 0%,
+          rgb(20 209 57 / 0.2) 54%,
+          rgb(255 216 74 / 0.16) 100%
+        ),
+          var(--button-base);
+        --button-border-color: rgb(
+          var(--button-theme-rgb, var(--theme-rgb))
+          / 0.42
+        );
+        --button-border-color-hover: rgb(
+          var(--button-theme-rgb, var(--theme-rgb))
+          / 0.68
+        );
+        --button-color: #f8fff9;
+        --button-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.18),
+          0 0.45rem 1rem rgb(var(--theme-rgb) / 0.16);
+        --button-shadow-hover:
+          inset 0 1px 0 rgba(255, 255, 255, 0.22),
+          0 0.55rem 1.2rem rgb(var(--theme-rgb) / 0.24);
+        --button-text-shadow: 0 1px 0 rgba(0, 0, 0, 0.55);
+        color-scheme: dark;
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+        line-height: 1.5;
+        color: var(--page-text);
+        background: var(--page-background);
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        color: var(--page-text);
+        background:
+          linear-gradient(180deg, var(--page-accent-wash), transparent 18rem),
+          var(--page-background);
+      }
+
+      button,
+      input,
+      select {
+        font: inherit;
+      }
+
+      main {
+        width: min(100% - 2rem, 86rem);
+        margin-inline: auto;
+        padding-block: 1.75rem 3.5rem;
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding-block: 0.85rem 1.8rem;
+      }
+
+      .topbar h1,
+      .topbar p,
+      .preview h2,
+      .preview p,
+      .section-copy,
+      .section-title {
+        margin: 0;
+      }
+
+      .topbar__brand {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        min-width: 0;
+      }
+
+      .lab-mark {
+        display: grid;
+        width: 3.2rem;
+        flex: 0 0 auto;
+        filter: drop-shadow(0 0.65rem 1rem rgb(var(--theme-rgb) / 0.16));
+        place-items: center;
+      }
+
+      .lab-mark muso-dojo-logo {
+        width: 100%;
+      }
+
+      .topbar h1 {
+        font-family: "Stick", "Trebuchet MS", Arial, sans-serif;
+        font-size: 2.35rem;
+        font-weight: 400;
+        line-height: 1;
+        color: var(--theme-color-strong);
+        text-shadow: 0 0.5rem 1.25rem rgb(var(--theme-rgb) / 0.18);
+      }
+
+      .topbar p {
+        color: var(--page-muted);
+        font-size: 0.95rem;
+      }
+
+      .topbar__actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 0.75rem;
+      }
+
+      .panel {
+        display: grid;
+        gap: 1rem;
+        padding: 1rem;
+        background: var(--panel-background-visual);
+        border: 1px solid var(--theme-border-color);
+        border-radius: 8px;
+        box-shadow: var(--panel-shadow);
+      }
+
+      .settings {
+        display: grid;
+        gap: 1rem;
+        margin-block-end: 1.7rem;
+      }
+
+      .section-title {
+        display: flex;
+        align-items: center;
+        gap: 0.55rem;
+        color: var(--page-text);
+        padding-inline-start: 0.55rem;
+        border-inline-start: 3px solid var(--theme-color);
+        font-size: 1.25rem;
+        font-weight: 700;
+        line-height: 1.2;
+      }
+
+      .section-copy {
+        color: var(--page-muted);
+        font-size: 0.9rem;
+      }
+
+      .section-header {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+
+      .section-header__copy {
+        display: grid;
+        gap: 0.2rem;
+      }
+
+      .variants {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .variants .section-header {
+        margin-block-start: 0.25rem;
+      }
+
+      .preview-meta h2 {
+        color: var(--page-text);
+        font-size: 1rem;
+        font-weight: 700;
+        line-height: 1.2;
+      }
+
+      .controls {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr));
+        gap: 0.75rem;
+      }
+
+      label {
+        display: grid;
+        gap: 0.35rem;
+        color: var(--page-muted);
+        font-size: 0.85rem;
+        font-weight: 700;
+      }
+
+      label:focus-within {
+        color: var(--page-text);
+      }
+
+      input,
+      select {
+        width: 100%;
+        min-height: 2.75rem;
+        padding: 0.65rem 0.75rem;
+        color: var(--field-text);
+        background: var(--field-background-visual);
+        border: 1px solid var(--field-border-color);
+        border-radius: 6px;
+        box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.04);
+        transition: border-color 160ms ease, box-shadow 160ms ease;
+      }
+
+      input:hover,
+      select:hover {
+        border-color: var(--field-border-color-hover);
+      }
+
+      input:focus,
+      select:focus,
+      button:focus-visible {
+        outline: 3px solid var(--focus-color);
+        outline-offset: 2px;
+      }
+
+      .preview-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+      }
+
+      .preview {
+        display: grid;
+        align-content: start;
+        gap: 0.75rem;
+        padding: 1rem;
+        background: var(--panel-background-visual);
+        border: 1px solid var(--panel-border-color);
+        border-radius: 8px;
+        box-shadow: var(--panel-shadow);
+        transition: border-color 160ms ease;
+      }
+
+      .preview:hover {
+        border-color: var(--theme-border-color);
+      }
+
+      .preview--wide {
+        grid-column: 1 / -1;
+      }
+
+      .preview h2 {
+        color: var(--page-text);
+        font-size: 1rem;
+      }
+
+      .preview p {
+        color: var(--page-muted);
+        font-size: 0.9rem;
+      }
+
+      .preview-meta {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+
+      .artboard {
+        display: grid;
+        position: relative;
+        width: min(100%, var(--artboard-display-width, 100%));
+        justify-self: center;
+        place-items: center;
+        padding: 0;
+        overflow: hidden;
+        background: var(--artboard-bg, var(--brand-white));
+        border: 1px solid var(--artboard-border-color);
+        border-radius: 6px;
+        box-shadow: var(--artboard-shadow);
+        aspect-ratio: var(--artboard-ratio, 16 / 9);
+      }
+
+      .artboard--dark {
+        --artboard-bg: var(--brand-black);
+        border-color: var(--artboard-dark-border-color);
+      }
+
+      .artboard--youtube::before,
+      .artboard--youtube::after {
+        position: absolute;
+        z-index: 1;
+        pointer-events: none;
+        content: "";
+      }
+
+      .artboard--youtube::before {
+        inset-block-start: 50%;
+        inset-inline: 0;
+        height: calc(423 / 1440 * 100%);
+        background: rgb(var(--theme-rgb) / 0.025);
+        border-block: 1px solid rgb(var(--theme-rgb) / 0.18);
+        transform: translateY(-50%);
+      }
+
+      .artboard--youtube::after {
+        inset-block-start: 50%;
+        inset-inline-start: 50%;
+        width: calc(1546 / 2560 * 100%);
+        height: calc(423 / 1440 * 100%);
+        border: 1px dashed rgb(255 216 74 / 0.34);
+        box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.3);
+        transform: translate(-50%, -50%);
+      }
+
+      .artboard muso-dojo-logo {
+        width: 100%;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: start;
+        gap: 0.5rem;
+      }
+
+      .preview .actions {
+        display: grid;
+        width: min(100%, 16.5rem);
+        align-self: start;
+        align-items: start;
+        justify-self: center;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .preview .actions button {
+        width: 100%;
+      }
+
+      button {
+        display: inline-grid;
+        position: relative;
+        min-width: 7rem;
+        min-height: 2.75rem;
+        overflow: hidden;
+        place-items: center;
+        padding: 0.65rem 1rem;
+        color: var(--button-color);
+        background: var(--button-background);
+        border: 1px solid var(--button-border-color);
+        border-radius: 6px;
+        box-shadow: var(--button-shadow);
+        cursor: pointer;
+        font-weight: 700;
+        line-height: 1;
+        text-align: center;
+        text-shadow: var(--button-text-shadow);
+        transition:
+          background 160ms ease,
+          border-color 160ms ease,
+          box-shadow 160ms ease,
+          transform 160ms ease;
+        white-space: nowrap;
+      }
+
+      button[data-export="image/png"] {
+        --button-theme-rgb: var(--theme-rgb);
+      }
+
+      button[data-export="image/webp"] {
+        --button-theme-rgb: var(--theme-alt-rgb);
+      }
+
+      button[data-export],
+      button[data-icon-export] {
+        width: 8rem;
+        min-width: 0;
+        min-height: 0;
+        height: 2.625rem;
+        padding: 0.55rem 0.85rem;
+      }
+
+      button:hover {
+        background: var(--button-background-hover);
+        border-color: var(--button-border-color-hover);
+        box-shadow: var(--button-shadow-hover);
+        transform: translateY(-1px);
+      }
+
+      button[data-export-icons] {
+        min-width: 10.75rem;
+      }
+
+      button:disabled {
+        cursor: wait;
+        opacity: 0.62;
+        transform: none;
+      }
+
+      button:disabled:hover {
+        background: var(--button-background);
+        border-color: var(--button-border-color);
+        box-shadow: var(--button-shadow);
+      }
+
+      .icons {
+        display: grid;
+        gap: 1rem;
+        margin-block-start: 1.85rem;
+      }
+
+      .platform-art {
+        margin-block-start: 1.85rem;
+      }
+
+      .icon-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
+        gap: 0.75rem;
+      }
+
+      .icon-card {
+        --icon-preview-size: 5rem;
+        --icon-logo-scale: 1;
+        display: grid;
+        align-content: start;
+        gap: 0.65rem;
+        margin: 0;
+        padding: 0.85rem;
+        color: var(--icon-card-text);
+        background: var(--panel-background-visual);
+        border: 1px solid var(--panel-border-color);
+        border-radius: 8px;
+        box-shadow: var(--panel-shadow);
+      }
+
+      .icon-card .actions {
+        align-self: start;
+        justify-content: center;
+        justify-self: center;
+      }
+
+      .icon-stage {
+        display: grid;
+        aspect-ratio: 1;
+        padding: 0.75rem;
+        overflow: hidden;
+        place-items: center;
+        background: var(--icon-stage-background);
+        border: 1px solid var(--artboard-border-color);
+        border-radius: 6px;
+        box-shadow: var(--artboard-shadow);
+      }
+
+      .icon-artboard {
+        display: grid;
+        width: var(--icon-preview-size);
+        max-width: 100%;
+        overflow: hidden;
+        place-items: center;
+        background: var(--icon-artboard-background, var(--brand-black));
+        border: 1px solid var(--artboard-border-color);
+        border-radius: 4px;
+        aspect-ratio: 1;
+      }
+
+      .icon-artboard--transparent {
+        --icon-checker-a: #111111;
+        --icon-checker-b: #252525;
+        --icon-artboard-background: conic-gradient(
+          var(--icon-checker-a) 25%,
+          var(--icon-checker-b) 0 50%,
+          var(--icon-checker-a) 0 75%,
+          var(--icon-checker-b) 0
+        ) 0 / 0.625rem 0.625rem;
+        border-color: rgb(255 255 255 / 0.08);
+        box-shadow:
+          inset 0 0 0 1px rgb(255 255 255 / 0.14),
+          0 0.35rem 0.75rem rgb(0 0 0 / 0.12);
+      }
+
+      .icon-artboard--dark {
+        --icon-artboard-background: var(--brand-black);
+      }
+
+      .icon-logo {
+        width: calc(var(--icon-preview-size) * var(--icon-logo-scale));
+        max-width: 100%;
+        --muso-logo-mark-shadow-color: transparent;
+        --muso-logo-mark-shadow-blur: 0;
+        --muso-logo-shadow-color: transparent;
+      }
+
+      .icon-card--size-32 {
+        --icon-preview-size: 3rem;
+      }
+
+      .icon-card--size-180,
+      .icon-card--size-192 {
+        --icon-preview-size: 5.75rem;
+      }
+
+      .icon-card--size-512 {
+        --icon-preview-size: 8.5rem;
+      }
+
+      figcaption {
+        display: grid;
+        gap: 0.1rem;
+        color: var(--caption-text);
+        font-size: 0.85rem;
+        text-align: center;
+      }
+
+      figcaption strong {
+        color: var(--caption-strong);
+        font-size: 0.9rem;
+      }
+
+      figcaption span {
+        color: var(--caption-muted);
+        font-size: 0.78rem;
+      }
+
+      .status {
+        min-height: 1.5rem;
+        color: var(--theme-color-strong);
+        font-size: 0.9rem;
+      }
+
+      @media (max-width: 50rem) {
+        main {
+          width: min(100% - 1rem, 86rem);
+        }
+
+        .topbar {
+          display: grid;
+          align-items: start;
+        }
+
+        .topbar__actions {
+          justify-content: start;
+        }
+
+        .controls {
+          grid-template-columns: 1fr;
+        }
+
+        .preview-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .preview--wide {
+          grid-column: auto;
+        }
+
+        .section-header {
+          display: grid;
+          align-items: start;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <main>
+      <header class="topbar">
+        <div class="topbar__brand">
+          <span class="lab-mark" aria-hidden="true">
+            <muso-dojo-logo variant="icon" tone="on-dark"></muso-dojo-logo>
+          </span>
+          <div>
+            <h1>Muso Dojo</h1>
+            <p>Logo lab for headers, icons, and brand artwork.</p>
+          </div>
+        </div>
+      </header>
+
+      <section class="settings" aria-labelledby="controls-title">
+        <h2 class="section-title" id="controls-title">Export Settings</h2>
+
+        <div class="panel">
+          <div class="controls">
+            <label>
+              Logo treatment
+              <select id="tone">
+                <option value="on-dark">Light on dark</option>
+                <option value="on-light">Dark on light</option>
+              </select>
+            </label>
+
+            <label>
+              Artwork background
+              <select id="export-background">
+                <option value="filled">Tone filled</option>
+                <option value="transparent">Transparent</option>
+              </select>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <section class="variants" aria-labelledby="variants-title">
+        <div class="section-header">
+          <h2 class="section-title" id="variants-title">Logo Variants</h2>
+        </div>
+
+        <div class="preview-grid">
+          <article
+            class="preview preview--wide"
+            data-background="on-dark"
+            data-height="180"
+            data-name="app-header"
+            data-width="560"
+          >
+            <div class="preview-meta">
+              <h2>App Header</h2>
+              <p>560 x 180 - compact lockup</p>
+            </div>
+
+            <div
+              class="artboard artboard--dark"
+              style="--artboard-display-width: 35rem; --artboard-ratio: 560 / 180"
+            >
+              <muso-dojo-logo variant="app" tone="on-dark"></muso-dojo-logo>
+            </div>
+
+            <div class="actions">
+              <button type="button" data-export="image/png">PNG</button>
+              <button type="button" data-export="image/webp">WebP</button>
+            </div>
+          </article>
+
+          <article
+            class="preview preview--wide"
+            data-background="on-dark"
+            data-height="450"
+            data-name="hero-lockup"
+            data-width="1600"
+          >
+            <div class="preview-meta">
+              <h2>Hero Lockup</h2>
+              <p>1600 x 450</p>
+            </div>
+
+            <div
+              class="artboard artboard--dark"
+              style="--artboard-display-width: 100rem; --artboard-ratio: 1600 / 450"
+            >
+              <muso-dojo-logo variant="hero" tone="on-dark"></muso-dojo-logo>
+            </div>
+
+            <div class="actions">
+              <button type="button" data-export="image/png">PNG</button>
+              <button type="button" data-export="image/webp">WebP</button>
+            </div>
+          </article>
+
+          <article
+            class="preview preview--wide"
+            data-background="on-dark"
+            data-height="1080"
+            data-name="video-title-card"
+            data-width="1920"
+          >
+            <div class="preview-meta">
+              <h2>Video Title Card</h2>
+              <p>1920 x 1080</p>
+            </div>
+
+            <div
+              class="artboard artboard--dark"
+              style="--artboard-display-width: 120rem; --artboard-ratio: 16 / 9"
+            >
+              <muso-dojo-logo
+                variant="video-title-card"
+                tone="on-dark"
+              ></muso-dojo-logo>
+            </div>
+
+            <div class="actions">
+              <button type="button" data-export="image/png">PNG</button>
+              <button type="button" data-export="image/webp">WebP</button>
+            </div>
+          </article>
+
+          <article
+            class="preview"
+            data-background="on-dark"
+            data-height="1080"
+            data-name="social-square"
+            data-width="1080"
+          >
+            <div class="preview-meta">
+              <h2>Social Square</h2>
+              <p>1080 x 1080</p>
+            </div>
+
+            <div
+              class="artboard artboard--dark"
+              style="--artboard-display-width: 67.5rem; --artboard-ratio: 1 / 1"
+            >
+              <muso-dojo-logo
+                variant="social-square"
+                tone="on-dark"
+              ></muso-dojo-logo>
+            </div>
+
+            <div class="actions">
+              <button type="button" data-export="image/png">PNG</button>
+              <button type="button" data-export="image/webp">WebP</button>
+            </div>
+          </article>
+
+          <article
+            class="preview"
+            data-background="on-dark"
+            data-height="512"
+            data-name="icon"
+            data-width="512"
+          >
+            <div class="preview-meta">
+              <h2>Icon</h2>
+              <p>512 x 512</p>
+            </div>
+
+            <div
+              class="artboard artboard--dark"
+              style="--artboard-display-width: 32rem; --artboard-ratio: 1 / 1"
+            >
+              <muso-dojo-logo variant="icon" tone="on-dark"></muso-dojo-logo>
+            </div>
+
+            <div class="actions">
+              <button type="button" data-export="image/png">PNG</button>
+              <button type="button" data-export="image/webp">WebP</button>
+            </div>
+          </article>
+
+          <article
+            class="preview preview--wide"
+            data-background="on-dark"
+            data-height="320"
+            data-name="wordmark"
+            data-width="1200"
+          >
+            <div class="preview-meta">
+              <h2>Wordmark</h2>
+              <p>1200 x 320</p>
+            </div>
+
+            <div
+              class="artboard artboard--dark"
+              style="--artboard-display-width: 75rem; --artboard-ratio: 1200 / 320"
+            >
+              <muso-dojo-logo
+                variant="wordmark"
+                tone="on-dark"
+              ></muso-dojo-logo>
+            </div>
+
+            <div class="actions">
+              <button type="button" data-export="image/png">PNG</button>
+              <button type="button" data-export="image/webp">WebP</button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="icons" aria-labelledby="icons-title">
+        <div class="section-header">
+          <div class="section-header__copy">
+            <h2 class="section-title" id="icons-title">App Icons</h2>
+            <p class="section-copy">
+              Fixed-background favicons, Apple touch, and PWA icons generated
+              from the live logo.
+            </p>
+          </div>
+          <button type="button" data-export-icons>Export all PNGs</button>
+        </div>
+        <div class="icon-list">
+          <figure
+            class="icon-card icon-card--size-32"
+            data-background="transparent"
+            data-filename="favicon-32x32.png"
+            data-icon-card
+            data-scale="1"
+            data-size="32"
+            data-tone="on-dark"
+          >
+            <span class="icon-stage">
+              <span class="icon-artboard icon-artboard--transparent">
+                <muso-dojo-logo
+                  class="icon-logo"
+                  mark-frame="plain"
+                  variant="icon"
+                  tone="on-dark"
+                ></muso-dojo-logo>
+              </span>
+            </span>
+            <figcaption>
+              <strong>Favicon 32</strong>
+              <span>Transparent plain-mark PNG</span>
+            </figcaption>
+            <div class="actions">
+              <button type="button" data-icon-export>PNG</button>
+            </div>
+          </figure>
+
+          <figure
+            class="icon-card icon-card--size-180"
+            data-background="on-dark"
+            data-filename="apple-touch-icon.png"
+            data-icon-card
+            data-scale="1"
+            data-size="180"
+            data-tone="on-dark"
+          >
+            <span class="icon-stage">
+              <span class="icon-artboard icon-artboard--dark">
+                <muso-dojo-logo
+                  class="icon-logo"
+                  mark-frame="plain"
+                  variant="icon"
+                  tone="on-dark"
+                ></muso-dojo-logo>
+              </span>
+            </span>
+            <figcaption>
+              <strong>Apple 180</strong>
+              <span>Near-black full-bleed PNG</span>
+            </figcaption>
+            <div class="actions">
+              <button type="button" data-icon-export>PNG</button>
+            </div>
+          </figure>
+
+          <figure
+            class="icon-card icon-card--size-192"
+            data-background="transparent"
+            data-filename="icon192x192.png"
+            data-icon-card
+            data-scale="1"
+            data-size="192"
+            data-tone="on-dark"
+          >
+            <span class="icon-stage">
+              <span class="icon-artboard icon-artboard--transparent">
+                <muso-dojo-logo
+                  class="icon-logo"
+                  mark-frame="plain"
+                  variant="icon"
+                  tone="on-dark"
+                ></muso-dojo-logo>
+              </span>
+            </span>
+            <figcaption>
+              <strong>PWA 192</strong>
+              <span>Transparent plain-mark PNG</span>
+            </figcaption>
+            <div class="actions">
+              <button type="button" data-icon-export>PNG</button>
+            </div>
+          </figure>
+
+          <figure
+            class="icon-card icon-card--size-512"
+            data-background="transparent"
+            data-filename="icon512x512.png"
+            data-icon-card
+            data-scale="1"
+            data-size="512"
+            data-tone="on-dark"
+          >
+            <span class="icon-stage">
+              <span class="icon-artboard icon-artboard--transparent">
+                <muso-dojo-logo
+                  class="icon-logo"
+                  mark-frame="plain"
+                  variant="icon"
+                  tone="on-dark"
+                ></muso-dojo-logo>
+              </span>
+            </span>
+            <figcaption>
+              <strong>PWA 512</strong>
+              <span>Transparent plain-mark PNG</span>
+            </figcaption>
+            <div class="actions">
+              <button type="button" data-icon-export>PNG</button>
+            </div>
+          </figure>
+
+          <figure
+            class="icon-card icon-card--size-192"
+            data-background="on-dark"
+            data-filename="icon-maskable-192x192.png"
+            data-icon-card
+            data-scale="1"
+            data-size="192"
+            data-tone="on-dark"
+          >
+            <span class="icon-stage">
+              <span class="icon-artboard icon-artboard--dark">
+                <muso-dojo-logo
+                  class="icon-logo"
+                  mark-frame="plain"
+                  variant="icon"
+                  tone="on-dark"
+                ></muso-dojo-logo>
+              </span>
+            </span>
+            <figcaption>
+              <strong>Maskable 192</strong>
+              <span>Near-black maskable PNG</span>
+            </figcaption>
+            <div class="actions">
+              <button type="button" data-icon-export>PNG</button>
+            </div>
+          </figure>
+
+          <figure
+            class="icon-card icon-card--size-512"
+            data-background="on-dark"
+            data-filename="icon-maskable-512x512.png"
+            data-icon-card
+            data-scale="1"
+            data-size="512"
+            data-tone="on-dark"
+          >
+            <span class="icon-stage">
+              <span class="icon-artboard icon-artboard--dark">
+                <muso-dojo-logo
+                  class="icon-logo"
+                  mark-frame="plain"
+                  variant="icon"
+                  tone="on-dark"
+                ></muso-dojo-logo>
+              </span>
+            </span>
+            <figcaption>
+              <strong>Maskable 512</strong>
+              <span>Near-black maskable PNG</span>
+            </figcaption>
+            <div class="actions">
+              <button type="button" data-icon-export>PNG</button>
+            </div>
+          </figure>
+        </div>
+      </section>
+
+      <section class="variants platform-art" aria-labelledby="platform-title">
+        <div class="section-header">
+          <h2 class="section-title" id="platform-title">Store & Channel Art</h2>
+        </div>
+
+        <div class="preview-grid">
+          <article
+            class="preview preview--wide"
+            data-background="on-dark"
+            data-background-policy="filled"
+            data-height="1440"
+            data-name="youtube-banner"
+            data-width="2560"
+          >
+            <div class="preview-meta">
+              <h2>YouTube Banner</h2>
+              <p>2560 x 1440 - safe area 1546 x 423</p>
+            </div>
+
+            <div
+              class="artboard artboard--dark artboard--youtube"
+              style="--artboard-display-width: 128rem; --artboard-ratio: 16 / 9"
+            >
+              <muso-dojo-logo
+                variant="youtube-banner"
+                tone="on-dark"
+              ></muso-dojo-logo>
+            </div>
+
+            <div class="actions">
+              <button type="button" data-export="image/png">PNG</button>
+              <button type="button" data-export="image/webp">WebP</button>
+            </div>
+          </article>
+
+          <article
+            class="preview preview--wide"
+            data-background="on-dark"
+            data-background-policy="filled"
+            data-height="500"
+            data-name="play-feature-graphic"
+            data-width="1024"
+          >
+            <div class="preview-meta">
+              <h2>Play Feature Graphic</h2>
+              <p>1024 x 500 - Google Play</p>
+            </div>
+
+            <div
+              class="artboard artboard--dark"
+              style="--artboard-display-width: 64rem; --artboard-ratio: 1024 / 500"
+            >
+              <muso-dojo-logo
+                variant="play-feature"
+                tone="on-dark"
+              ></muso-dojo-logo>
+            </div>
+
+            <div class="actions">
+              <button type="button" data-export="image/png">PNG</button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <p class="status" id="status" role="status"></p>
+    </main>
+
+    <script type="module">
+      import { BRAND_COLORS, LOGO_TONE_COLORS } from "./logo-config.mjs";
+
+      const toneInput = document.querySelector("#tone");
+      const exportBackgroundInput = document.querySelector(
+        "#export-background",
+      );
+      const status = document.querySelector("#status");
+      const logos = [
+        ...document.querySelectorAll(
+          ".preview muso-dojo-logo, [data-icon-card] muso-dojo-logo",
+        ),
+      ];
+      const previews = [...document.querySelectorAll(".preview")];
+      const iconCards = [...document.querySelectorAll("[data-icon-card]")];
+      const transparentArtboardBackground = `conic-gradient(
+        var(--checker-a) 25%,
+        var(--checker-b) 0 50%,
+        var(--checker-a) 0 75%,
+        var(--checker-b) 0
+      ) 0 / 1.25rem 1.25rem`;
+      const toneBackgrounds = {
+        "on-light": LOGO_TONE_COLORS["on-light"].background,
+        "on-dark": LOGO_TONE_COLORS["on-dark"].background,
+      };
+      const toneLabels = {
+        "on-light": "dark on light",
+        "on-dark": "light on dark",
+      };
+      const exportBackgroundLabels = {
+        filled: "tone filled canvas",
+        transparent: "transparent canvas",
+      };
+      const backgroundValue = (background) =>
+        toneBackgrounds[background] || background || BRAND_COLORS.transparent;
+      for (const preview of previews) {
+        const meta = preview.querySelector(".preview-meta p");
+
+        preview.dataset.sizeLabel = meta.textContent;
+      }
+
+      const syncLogos = () => {
+        for (const logo of logos) {
+          const preview = logo.closest(".preview");
+          const iconCard = logo.closest("[data-icon-card]");
+          const artboard = preview?.querySelector(".artboard");
+          const meta = preview?.querySelector(".preview-meta p");
+          const selectedTone = iconCard
+            ? iconCard.dataset.tone || "on-dark"
+            : toneInput.value;
+          const exportBackgroundMode = exportBackgroundInput.value;
+          const forceFilledBackground =
+            preview?.dataset.backgroundPolicy === "filled";
+          const isTransparentExport =
+            !forceFilledBackground &&
+            exportBackgroundMode === BRAND_COLORS.transparent;
+          const artboardBackground = isTransparentExport
+            ? transparentArtboardBackground
+            : toneBackgrounds[selectedTone];
+          const exportBackground = isTransparentExport
+            ? BRAND_COLORS.transparent
+            : toneBackgrounds[selectedTone];
+          const exportBackgroundLabel = forceFilledBackground
+            ? exportBackgroundLabels.filled
+            : exportBackgroundLabels[exportBackgroundMode];
+
+          logo.setAttribute("tone", selectedTone);
+          logo.removeAttribute("theme");
+
+          if (preview && artboard && meta) {
+            preview.dataset.currentBackground = exportBackground;
+            artboard.style.setProperty("--artboard-bg", artboardBackground);
+            artboard.classList.toggle(
+              "artboard--dark",
+              selectedTone !== "on-light",
+            );
+            meta.textContent = [
+              preview.dataset.sizeLabel,
+              toneLabels[selectedTone],
+              exportBackgroundLabel,
+            ].join(" · ");
+          }
+        }
+      };
+
+      const setStatus = (message) => {
+        status.textContent = message;
+      };
+
+      const fileExtension = (type) => (type === "image/webp" ? "webp" : "png");
+
+      const canvasToBlob = (canvas, type = "image/png", quality = 0.98) =>
+        new Promise((resolve, reject) => {
+          canvas.toBlob(
+            (blob) => {
+              if (blob) {
+                resolve(blob);
+                return;
+              }
+
+              reject(new Error(`Unable to export ${type}.`));
+            },
+            type,
+            quality,
+          );
+        });
+
+      const downloadBlob = (blob, filename) => {
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+
+        link.href = url;
+        link.download = filename;
+        link.click();
+        setTimeout(() => URL.revokeObjectURL(url), 0);
+      };
+
+      const assertIconBackground = (canvas, background) => {
+        const context = canvas.getContext("2d");
+        const last = canvas.width - 1;
+        const corners = [
+          [0, 0],
+          [last, 0],
+          [0, last],
+          [last, last],
+        ];
+
+        for (const [x, y] of corners) {
+          const [, , , alpha] = context.getImageData(x, y, 1, 1).data;
+
+          if (background === BRAND_COLORS.transparent && alpha !== 0) {
+            throw new Error("Transparent icon background is not transparent.");
+          }
+
+          if (background !== BRAND_COLORS.transparent && alpha !== 255) {
+            throw new Error("Opaque icon background is not fully opaque.");
+          }
+        }
+      };
+
+      const iconCanvas = async (card) => {
+        if (document.fonts?.ready) {
+          await document.fonts.ready;
+        }
+
+        const logo = card.querySelector("muso-dojo-logo");
+        const size = Number(card.dataset.size);
+        const scale = Number(card.dataset.scale || "1");
+        const background = backgroundValue(card.dataset.background);
+        const tone = card.dataset.tone || "on-dark";
+        const innerSize = Math.max(1, Math.round(size * scale));
+        const canvas = document.createElement("canvas");
+        const sourceCanvas = document.createElement("canvas");
+        const context = canvas.getContext("2d");
+
+        canvas.width = size;
+        canvas.height = size;
+        context.clearRect(0, 0, size, size);
+
+        if (background !== BRAND_COLORS.transparent) {
+          context.fillStyle = background;
+          context.fillRect(0, 0, size, size);
+        }
+
+        logo.drawToCanvas(sourceCanvas, {
+          background: BRAND_COLORS.transparent,
+          height: innerSize,
+          tone,
+          width: innerSize,
+        });
+
+        context.drawImage(
+          sourceCanvas,
+          (size - innerSize) / 2,
+          (size - innerSize) / 2,
+        );
+
+        assertIconBackground(canvas, background);
+        return canvas;
+      };
+
+      const exportIcon = async (button) => {
+        const card = button.closest("[data-icon-card]");
+        const previousLabel = button.textContent;
+        const filename = card.dataset.filename;
+
+        button.disabled = true;
+        button.textContent = "Exporting";
+        setStatus("");
+
+        try {
+          const canvas = await iconCanvas(card);
+          const blob = await canvasToBlob(canvas);
+
+          downloadBlob(blob, filename);
+          setStatus(`${filename} exported`);
+        } catch (error) {
+          setStatus(error.message);
+        } finally {
+          button.disabled = false;
+          button.textContent = previousLabel;
+        }
+      };
+
+      const exportIcons = async (button) => {
+        const previousLabel = button.textContent;
+
+        button.disabled = true;
+        button.textContent = "Exporting";
+        setStatus("");
+
+        try {
+          for (const card of iconCards) {
+            const canvas = await iconCanvas(card);
+            const blob = await canvasToBlob(canvas);
+
+            downloadBlob(blob, card.dataset.filename);
+          }
+
+          setStatus(`${iconCards.length} icon PNGs exported`);
+        } catch (error) {
+          setStatus(error.message);
+        } finally {
+          button.disabled = false;
+          button.textContent = previousLabel;
+        }
+      };
+
+      const exportLogo = async (button) => {
+        const preview = button.closest(".preview");
+        const logo = preview.querySelector("muso-dojo-logo");
+        const type = button.dataset.export;
+        const width = Number(preview.dataset.width);
+        const height = Number(preview.dataset.height);
+        const name = preview.dataset.name;
+        const tone = logo.tone;
+        const extension = fileExtension(type);
+        const backgroundMode = preview.dataset.currentBackground ===
+            BRAND_COLORS.transparent
+          ? BRAND_COLORS.transparent
+          : "filled";
+        const backgroundSuffix = backgroundMode === BRAND_COLORS.transparent
+          ? "-transparent"
+          : "";
+        const previousLabel = button.textContent;
+
+        button.disabled = true;
+        button.textContent = "Exporting";
+        setStatus("");
+
+        try {
+          await logo.download({
+            background: preview.dataset.currentBackground ||
+              backgroundValue(preview.dataset.background),
+            filename: `${name}-${tone}${backgroundSuffix}-${width}x${height}.${extension}`,
+            height,
+            tone,
+            type,
+            width,
+          });
+          setStatus(
+            `${name}-${tone}${backgroundSuffix}-${width}x${height}.${extension}`,
+          );
+        } catch (error) {
+          setStatus(error.message);
+        } finally {
+          button.disabled = false;
+          button.textContent = previousLabel;
+        }
+      };
+
+      for (const input of [toneInput, exportBackgroundInput]) {
+        input.addEventListener("input", syncLogos);
+      }
+
+      document.addEventListener("click", (event) => {
+        const iconButton = event.target.closest("button[data-icon-export]");
+        const iconSetButton = event.target.closest("button[data-export-icons]");
+        const button = event.target.closest("button[data-export]");
+
+        if (iconButton) {
+          exportIcon(iconButton);
+          return;
+        }
+
+        if (iconSetButton) {
+          exportIcons(iconSetButton);
+          return;
+        }
+
+        if (button) {
+          exportLogo(button);
+        }
+      });
+
+      syncLogos();
+    </script>
+  </body>
+</html>
