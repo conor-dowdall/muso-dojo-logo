@@ -140,11 +140,13 @@ export const MARK_FRAME_SETTINGS = {
 
 export const GRADIENT_STOPS = Object.freeze([
   { color: RAINBOW_COLORS.red, name: "red", offset: 0 },
-  { color: RAINBOW_COLORS.orange, name: "orange", offset: 0.18 },
-  { color: RAINBOW_COLORS.yellow, name: "yellow", offset: 0.34 },
-  { color: RAINBOW_COLORS.green, name: "green", offset: 0.52 },
-  { color: RAINBOW_COLORS.cyan, name: "cyan", offset: 0.68 },
-  { color: RAINBOW_COLORS.blue, name: "blue", offset: 0.84 },
+  { color: RAINBOW_COLORS.red, name: "red-hold", offset: 0.1 },
+  { color: RAINBOW_COLORS.orange, name: "orange", offset: 0.24 },
+  { color: RAINBOW_COLORS.yellow, name: "yellow", offset: 0.4 },
+  { color: RAINBOW_COLORS.green, name: "green", offset: 0.56 },
+  { color: RAINBOW_COLORS.cyan, name: "cyan", offset: 0.72 },
+  { color: RAINBOW_COLORS.blue, name: "blue", offset: 0.82 },
+  { color: RAINBOW_COLORS.purple, name: "purple-start", offset: 0.92 },
   { color: RAINBOW_COLORS.purple, name: "purple", offset: 1 },
 ]);
 
