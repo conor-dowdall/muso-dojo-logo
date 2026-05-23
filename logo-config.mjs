@@ -86,8 +86,8 @@ export const HORIZONTAL_LOCKUPS = {
 function horizontalLockup(variant, options = {}) {
   const box = VIEW_BOXES[variant];
   const markRadius = options.markRadius;
-  const innerGapRatio = options.innerGapRatio ??
-    HORIZONTAL_LOCKUP_SYSTEM.innerGapRatio;
+  const innerGapRatio =
+    options.innerGapRatio ?? HORIZONTAL_LOCKUP_SYSTEM.innerGapRatio;
 
   return {
     innerGapRatio,

@@ -134,11 +134,13 @@ that need a smaller tab icon.
 
 Standard favicons and PWA `purpose: any` icons use `mark-frame="plain"` on a
 transparent canvas to avoid compositing rings in Bubblewrap-generated Android
-artwork. Apple touch and maskable icons use the same plain mark on a black
-full-bleed canvas, with the important artwork kept inside the maskable safe
-area. Finished dark artwork exports use `#000000`; finished light artwork
-exports use `#ffffff`; the lab UI keeps a softer near-black page surface so
-controls remain comfortable.
+artwork. The 32px favicon intentionally exports the same mark at a slightly
+larger source scale so the tiny browser tab icon has stronger presence. Apple
+touch and maskable icons use the same plain mark on a black full-bleed canvas,
+with the important artwork kept inside the maskable safe area. Finished dark
+artwork exports use `#000000`; finished light artwork exports use `#ffffff`;
+the lab UI keeps a softer near-black page surface so controls remain
+comfortable.
 
 The harmonic wave texture is reserved for large artwork exports. Keep it out of
 favicons, transparent PWA icons, the app header, and reusable wordmark assets so

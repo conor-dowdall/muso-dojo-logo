@@ -35,11 +35,9 @@ class MusoDojoLogo extends HTMLElement {
   constructor() {
     super();
 
-    this.#gradientId = `muso-logo-gradient-${
-      Math.random()
-        .toString(36)
-        .slice(2)
-    }`;
+    this.#gradientId = `muso-logo-gradient-${Math.random()
+      .toString(36)
+      .slice(2)}`;
 
     const shadowRoot = this.attachShadow({ mode: "open" });
     shadowRoot.innerHTML = /* HTML */ `
@@ -336,7 +334,8 @@ class MusoDojoLogo extends HTMLElement {
     const link = document.createElement("a");
 
     link.href = url;
-    link.download = filename ||
+    link.download =
+      filename ||
       `muso-dojo-logo-${this.variant}-${exportTone}-${width}x${height}.${extension}`;
     link.click();
     setTimeout(() => URL.revokeObjectURL(url), 0);
@@ -591,20 +590,20 @@ class MusoDojoLogo extends HTMLElement {
     );
     const subtitleFontSize = HAS_SUBTITLE
       ? this.#fitText(
-        BRAND.subtitle,
-        lockup.subtitleMaxWidth,
-        lockup.subtitlePreferredSize,
-        40,
-        400,
-      )
+          BRAND.subtitle,
+          lockup.subtitleMaxWidth,
+          lockup.subtitlePreferredSize,
+          40,
+          400,
+        )
       : 0;
     const titleWidth = this.#textWidth(BRAND.title, titleFontSize, 400);
     const subtitleWidth = HAS_SUBTITLE
       ? this.#textWidth(BRAND.subtitle, subtitleFontSize, 400)
       : 0;
     const markWidth = this.#markVisualWidth(lockup.markRadius);
-    const innerGap = lockup.innerGap ??
-      lockup.markRadius * lockup.innerGapRatio;
+    const innerGap =
+      lockup.innerGap ?? lockup.markRadius * lockup.innerGapRatio;
 
     return {
       mark: {
@@ -654,8 +653,8 @@ class MusoDojoLogo extends HTMLElement {
     x,
     y,
   }) {
-    const resolvedFontSize = fontSize ??
-      this.#fitText(text, maxWidth, preferredSize, minSize, weight);
+    const resolvedFontSize =
+      fontSize ?? this.#fitText(text, maxWidth, preferredSize, minSize, weight);
 
     this.#svg.append(
       this.#element(
@@ -749,14 +748,7 @@ class MusoDojoLogo extends HTMLElement {
     );
   }
 
-  #markTextElement({
-    className,
-    fill,
-    markSize,
-    stroke,
-    strokeWidth,
-    x,
-  }) {
+  #markTextElement({ className, fill, markSize, stroke, strokeWidth, x }) {
     const attributes = {
       class: className,
       fill,
@@ -960,12 +952,7 @@ class MusoDojoLogo extends HTMLElement {
   }
 
   #drawWaveField(context, field) {
-    const gradient = context.createLinearGradient(
-      0,
-      0,
-      field.viewBox.width,
-      0,
-    );
+    const gradient = context.createLinearGradient(0, 0, field.viewBox.width, 0);
 
     for (const stop of GRADIENT_STOPS) {
       gradient.addColorStop(stop.offset, stop.color);
@@ -1063,21 +1050,15 @@ class MusoDojoLogo extends HTMLElement {
     if (markFrame === "halo") {
       context.strokeStyle = colors.haloOuter;
       context.lineWidth = this.#haloOuterStrokeWidth(radius);
-      drawAtBaseline((baseline) =>
-        context.strokeText(BRAND.mark, x, baseline)
-      );
+      drawAtBaseline((baseline) => context.strokeText(BRAND.mark, x, baseline));
 
       context.strokeStyle = colors.haloInner;
       context.lineWidth = this.#haloInnerStrokeWidth(radius);
-      drawAtBaseline((baseline) =>
-        context.strokeText(BRAND.mark, x, baseline)
-      );
+      drawAtBaseline((baseline) => context.strokeText(BRAND.mark, x, baseline));
     } else if (markFrame === "disc") {
       context.strokeStyle = gradient;
       context.lineWidth = this.#markStrokeWidth(radius, markFrame);
-      drawAtBaseline((baseline) =>
-        context.strokeText(BRAND.mark, x, baseline)
-      );
+      drawAtBaseline((baseline) => context.strokeText(BRAND.mark, x, baseline));
     }
 
     context.shadowBlur = colors.markShadowBlur;
@@ -1103,8 +1084,8 @@ class MusoDojoLogo extends HTMLElement {
       y,
     },
   ) {
-    const resolvedFontSize = fontSize ??
-      this.#fitText(text, maxWidth, preferredSize, minSize, weight);
+    const resolvedFontSize =
+      fontSize ?? this.#fitText(text, maxWidth, preferredSize, minSize, weight);
     const textShadow = this.#textShadow();
 
     context.save();
@@ -1145,12 +1126,14 @@ class MusoDojoLogo extends HTMLElement {
       return radius * 2;
     }
 
-    const strokePadding = this.markFrame === "halo"
-      ? this.#haloOuterStrokeWidth(radius)
-      : this.#markStrokeWidth(radius);
+    const strokePadding =
+      this.markFrame === "halo"
+        ? this.#haloOuterStrokeWidth(radius)
+        : this.#markStrokeWidth(radius);
 
-    return this.#textWidth(BRAND.mark, this.#markSize(radius), 700) +
-      strokePadding;
+    return (
+      this.#textWidth(BRAND.mark, this.#markSize(radius), 700) + strokePadding
+    );
   }
 
   #iconMarkRadius(box) {
@@ -1261,9 +1244,10 @@ class MusoDojoLogo extends HTMLElement {
       Number.isFinite(metrics.actualBoundingBoxAscent) &&
       Number.isFinite(metrics.actualBoundingBoxDescent)
     ) {
-      return centerY +
-        (metrics.actualBoundingBoxAscent - metrics.actualBoundingBoxDescent) /
-          2;
+      return (
+        centerY +
+        (metrics.actualBoundingBoxAscent - metrics.actualBoundingBoxDescent) / 2
+      );
     }
 
     return null;
@@ -1390,7 +1374,7 @@ class MusoDojoLogo extends HTMLElement {
         this.#element("stop", {
           offset: `${stop.offset * 100}%`,
           "stop-color": stop.color,
-        })
+        }),
       ),
     );
 
