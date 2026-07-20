@@ -10,7 +10,6 @@ GitHub Pages: https://conor-dowdall.github.io/muso-dojo-logo/
 - `index.html`: the logo lab UI.
 - `muso-dojo-logo.mjs`: the `<muso-dojo-logo>` web component.
 - `logo-config.mjs`: shared brand, size, color, and lockup constants.
-- `wave-fields.mjs`: harmonic wave presets and point-generation helpers.
 - `Stick-Regular.ttf`: the bundled Stick font.
 - `OFL.txt`: the Stick font license.
 - `site.webmanifest`: example PWA install metadata.
@@ -22,40 +21,42 @@ GitHub Pages: https://conor-dowdall.github.io/muso-dojo-logo/
 
 <muso-dojo-logo
   variant="hero"
-  tone="on-dark"
+  theme="dark"
 ></muso-dojo-logo>
 ```
 
 Variants:
 
 - `hero`: wide centered lockup.
-- `app`: compact app header lockup.
 - `stacked`: square social or splash layout.
 - `icon`: mark-only app icon artwork.
 - `wordmark`: title and subtitle only.
-- `social-square`: square social artwork with subtle harmonic wave texture.
-- `video-title-card`: 1920 x 1080 video title artwork with subtle harmonic
-  wave texture.
+- `social-square`: square social artwork with a centered stacked lockup.
+- `video-title-card`: 1920 x 1080 video title artwork.
 - `play-feature`: 1024 x 500 Google Play feature graphic on a filled dark
   canvas.
 - `youtube-banner`: 2560 x 1440 channel banner with the critical lockup inside
-  the centered 1546 x 423 all-devices safe area and subtle harmonic wave
-  artwork for larger crops.
+  the centered 1546 x 423 all-devices safe area.
 
-Logo treatments:
+Logo themes mirror the main Muso Dojo app's `--color-base` and `--color-text`
+pairs:
 
-- `on-dark`: pure white `#ffffff` text on pure black `#000000` artwork.
-- `on-light`: pure black `#000000` text on pure white `#ffffff` artwork.
+- `dark`: `#f7f8fb` text on `#08090d` artwork.
+- `light`: `#18181b` text on `#fbfbfd` artwork.
+- `ocean`: `#eefbff` text on `#06131e` artwork.
+- `purple`: `#f7f1ff` text on `#140f22` artwork.
 
 Color convention:
 
-- Finished artwork uses pure black, pure white, and the Muso Dojo rainbow
-  gradient. Shadows and guide UI may use alpha, but the brand surfaces and text
-  stay anchored to `#000000` and `#ffffff`.
+- Finished artwork uses the selected app theme's base/text pair and the Muso
+  Dojo rainbow gradient. Shadows and guide UI may still use alpha black or
+  white where needed for depth and contrast.
+- Light-theme artwork gives the rainbow mark a restrained neutral keyline so
+  its yellow and green sections remain defined without softening the mark.
 - The rainbow is intentionally perceptual rather than mathematically additive:
   red, orange, yellow, green, cyan, blue, and purple stops give the mark a full
   rainbow read without making the yellow/cyan bands disappear on white.
-- `logo-config.mjs` is the source of truth for brand colors, tone backgrounds,
+- `logo-config.mjs` is the source of truth for brand colors, theme backgrounds,
   and rainbow gradient stops. The component uses those same constants for SVG
   previews and canvas exports.
 
@@ -65,9 +66,10 @@ Brand text and layout:
   `Muso Dojo`, `Play Music`, and `M`.
 - Wide horizontal artwork uses the shared `HORIZONTAL_LOCKUP_SYSTEM` in
   `logo-config.mjs`. The component measures the fitted title, mark, and
-  subtitle, then places equal inner edge gaps around the `M`. That keeps the
-  hero, video title card, Play feature graphic, and YouTube banner visually
-  related even though their canvases have different proportions.
+  subtitle, places equal inner edge gaps around the `M`, and optically centers
+  the complete group. That keeps the hero, video title card, Play feature
+  graphic, and YouTube banner visually related even though their canvases have
+  different proportions.
 
 Other attributes:
 
@@ -75,46 +77,39 @@ Other attributes:
   opt-in contrast fallback for difficult transparent placements, or `disc` for
   older badge-style artwork.
 - `background`: optional SVG/export background color.
-- `theme`: older compatibility alias. Prefer `tone`.
+- `theme`: `dark`, `light`, `ocean`, or `purple`.
+- `tone`: compatibility alias for older embeds. `on-dark` maps to `dark` and
+  `on-light` maps to `light`.
 
 ## Lab
 
 Open `index.html` from GitHub Pages or any local static server to choose the
-logo treatment and artwork background. The brand title, subtitle, and mark are
-fixed in the component. The lab is dark-mode only, while the logo treatment
-selector still supports `Dark on light` for light-surface exports. Artwork
-background defaults to `Tone filled`, which is the recommended finished-export
-setting. Use `Transparent` when you want a reusable source layer for GIMP or
-another composition tool. Export buttons generate PNG or WebP files from the
-live component. The Play feature graphic card exports a PNG for Google Play's
-1024 x 500 requirement. The Play feature graphic and YouTube banner live in a
-separate store/channel section because they always use filled canvases. The
-YouTube banner preview includes crop guides for placement, but those guides are
-not included in exported files.
+logo theme and artwork background. The brand title, subtitle, and mark are
+fixed in the component. Artwork background defaults to `Theme filled`, which
+is the recommended finished-export setting. Use `Transparent` when you want a
+reusable source layer for GIMP or another composition tool. Export buttons
+generate PNG or WebP files from the live component. The Play feature graphic
+card exports a PNG for Google Play's 1024 x 500 requirement. The Play feature
+graphic and YouTube banner live in a separate store/channel section because
+they always use filled canvases. The YouTube banner preview includes crop
+guides for placement, but those guides are not included in exported files.
 
 ## Brand Placement
 
-Use `variant="app"` for calm app chrome: sign-in, dashboards, settings, account
-areas, launch states, and lightweight documentation. It should feel like a
-compact lockup inside the product, not a full banner across the whole viewport.
-
-For desktop, keep the app top bar around 56-72px tall. Use the app lockup at
-roughly 170-220px wide, then let navigation, progress, search, or account
-actions carry the remaining space.
-
-For mobile, keep the top bar around 48-56px tall. If the full app lockup feels
-too dense, use the standalone icon mark with app-native title text:
+For product chrome, combine the standalone icon mark with app-native title text
+so the header can respond naturally to its available space:
 
 ```html
 <muso-dojo-logo
   variant="icon"
-  tone="on-dark"
+  theme="dark"
 ></muso-dojo-logo>
 ```
 
-Avoid the full app header on interactive practice, lesson, quiz, ear-training,
-or instrument-work pages. In those places, use a small home control, favicon,
-icon mark, or no visible branding so the learning task stays light.
+Avoid full branding lockups on interactive practice, lesson, quiz,
+ear-training, or instrument-work pages. In those places, use a small home
+control, favicon, icon mark, or no visible branding so the learning task stays
+light.
 
 The App Icons section exports fixed-background icon PNGs used by this site.
 These do not follow the lab's global artwork background setting, because each
@@ -136,15 +131,11 @@ Standard favicons and PWA `purpose: any` icons use `mark-frame="plain"` on a
 transparent canvas to avoid compositing rings in Bubblewrap-generated Android
 artwork. The 32px favicon intentionally exports the same mark at a slightly
 larger source scale so the tiny browser tab icon has stronger presence. Apple
-touch and maskable icons use the same plain mark on a black full-bleed canvas,
+touch and maskable icons use the same plain mark on a dark full-bleed canvas,
 with the important artwork kept inside the maskable safe area. Finished dark
-artwork exports use `#000000`; finished light artwork exports use `#ffffff`;
+artwork exports use `#08090d`; finished light artwork exports use `#fbfbfd`;
 the lab UI keeps a softer near-black page surface so controls remain
 comfortable.
-
-The harmonic wave texture is reserved for large artwork exports. Keep it out of
-favicons, transparent PWA icons, the app header, and reusable wordmark assets so
-the core mark remains crisp at small sizes and in product chrome.
 
 ## Export API
 
@@ -154,15 +145,15 @@ const logo = document.querySelector("muso-dojo-logo");
 await logo.download({
   width: 1600,
   height: 450,
-  tone: "on-dark",
+  theme: "dark",
   type: "image/png",
-  background: "#000000",
+  background: "#08090d",
 });
 
 const blob = await logo.toBlob({
   width: 1080,
   height: 1080,
-  tone: "on-light",
+  theme: "purple",
   type: "image/webp",
   background: "transparent",
 });

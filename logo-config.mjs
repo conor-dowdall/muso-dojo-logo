@@ -8,6 +8,7 @@ export const HAS_SUBTITLE = Boolean(BRAND.subtitle);
 
 export const DEFAULTS = {
   markFrame: "plain",
+  theme: "dark",
   tone: "on-dark",
   variant: "hero",
 };
@@ -23,17 +24,16 @@ const RAINBOW_COLORS = Object.freeze({
 });
 
 export const BRAND_COLORS = Object.freeze({
-  black: "#000000",
-  white: "#ffffff",
+  darkBase: "#08090d",
+  darkText: "#f7f8fb",
+  lightBase: "#fbfbfd",
+  lightText: "#18181b",
   transparent: "transparent",
   alpha: Object.freeze({
     black10: "rgb(0 0 0 / 0.1)",
-    black12: "rgb(0 0 0 / 0.12)",
     black16: "rgb(0 0 0 / 0.16)",
     black18: "rgb(0 0 0 / 0.18)",
-    black22: "rgb(0 0 0 / 0.22)",
     black28: "rgb(0 0 0 / 0.28)",
-    black32: "rgb(0 0 0 / 0.32)",
     black36: "rgb(0 0 0 / 0.36)",
     black56: "rgb(0 0 0 / 0.56)",
     white12: "rgb(255 255 255 / 0.12)",
@@ -42,20 +42,42 @@ export const BRAND_COLORS = Object.freeze({
   rainbow: RAINBOW_COLORS,
 });
 
-export const LOGO_TONE_COLORS = Object.freeze({
-  "on-dark": Object.freeze({
-    background: BRAND_COLORS.black,
-    text: BRAND_COLORS.white,
+export const LOGO_THEME_COLORS = Object.freeze({
+  dark: Object.freeze({
+    background: BRAND_COLORS.darkBase,
+    text: BRAND_COLORS.darkText,
   }),
-  "on-light": Object.freeze({
-    background: BRAND_COLORS.white,
-    text: BRAND_COLORS.black,
+  light: Object.freeze({
+    background: BRAND_COLORS.lightBase,
+    text: BRAND_COLORS.lightText,
+  }),
+  ocean: Object.freeze({
+    background: "#06131e",
+    text: "#eefbff",
+  }),
+  purple: Object.freeze({
+    background: "#140f22",
+    text: "#f7f1ff",
   }),
 });
 
+export const TONE_THEMES = Object.freeze({
+  "on-dark": "dark",
+  "on-light": "light",
+});
+
+// Compatibility map for existing consumers of the two-treatment API.
+export const LOGO_TONE_COLORS = Object.freeze(
+  Object.fromEntries(
+    Object.entries(TONE_THEMES).map(([tone, theme]) => [
+      tone,
+      LOGO_THEME_COLORS[theme],
+    ]),
+  ),
+);
+
 export const VIEW_BOXES = {
   hero: { width: 1600, height: 450 },
-  app: { width: 560, height: 180 },
   stacked: { width: 1080, height: 1080 },
   icon: { width: 512, height: 512 },
   wordmark: { width: 1200, height: 320 },
@@ -65,11 +87,26 @@ export const VIEW_BOXES = {
   "youtube-banner": { width: 2560, height: 1440 },
 };
 
+export const STACKED_LOCKUPS = Object.freeze({
+  stacked: Object.freeze({
+    markRadius: 192,
+    markY: 385,
+    subtitleY: 760,
+    titleY: 650,
+  }),
+  "social-square": Object.freeze({
+    markRadius: 200,
+    markY: 400,
+    subtitleY: 760,
+    titleY: 650,
+  }),
+});
+
 export const HORIZONTAL_LOCKUP_SYSTEM = {
   // Keep wide lockups related by spacing visible edges, not text centers.
-  innerGapRatio: 0.72,
+  innerGapRatio: 0.64,
   subtitleMaxWidthRatio: 3.9,
-  subtitleSizeRatio: 0.68,
+  subtitleSizeRatio: 0.59,
   titleMaxWidthRatio: 4.1,
   titleSizeRatio: 0.74,
 };
@@ -90,9 +127,9 @@ function horizontalLockup(variant, options = {}) {
     options.innerGapRatio ?? HORIZONTAL_LOCKUP_SYSTEM.innerGapRatio;
 
   return {
+    centerX: options.centerX ?? box.width / 2,
     innerGapRatio,
     markRadius,
-    markX: options.markX ?? box.width / 2,
     subtitleMaxWidth: Math.round(
       markRadius * HORIZONTAL_LOCKUP_SYSTEM.subtitleMaxWidthRatio,
     ),
@@ -151,5 +188,6 @@ export const GRADIENT_STOPS = Object.freeze([
 ]);
 
 export const VALID_VARIANTS = new Set(Object.keys(VIEW_BOXES));
-export const VALID_TONES = new Set(["on-light", "on-dark"]);
+export const VALID_THEMES = new Set(Object.keys(LOGO_THEME_COLORS));
+export const VALID_TONES = new Set(Object.keys(TONE_THEMES));
 export const VALID_MARK_FRAMES = new Set(Object.keys(MARK_FRAME_SETTINGS));

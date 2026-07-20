@@ -17,8 +17,8 @@
       }
 
       :root {
-        --brand-black: #000000;
-        --brand-white: #ffffff;
+        --brand-dark-base: #08090d;
+        --brand-light-base: #fbfbfd;
         --page-background: #080808;
         --page-accent-wash: rgb(var(--theme-rgb) / 0.08);
         --page-text: #f5f5ef;
@@ -352,7 +352,7 @@
         place-items: center;
         padding: 0;
         overflow: hidden;
-        background: var(--artboard-bg, var(--brand-white));
+        background: var(--artboard-bg, var(--brand-light-base));
         border: 1px solid var(--artboard-border-color);
         border-radius: 6px;
         box-shadow: var(--artboard-shadow);
@@ -360,7 +360,7 @@
       }
 
       .artboard--dark {
-        --artboard-bg: var(--brand-black);
+        --artboard-bg: var(--brand-dark-base);
         border-color: var(--artboard-dark-border-color);
       }
 
@@ -536,7 +536,7 @@
         max-width: 100%;
         overflow: hidden;
         place-items: center;
-        background: var(--icon-artboard-background, var(--brand-black));
+        background: var(--icon-artboard-background, var(--brand-dark-base));
         border: 1px solid var(--artboard-border-color);
         border-radius: 4px;
         aspect-ratio: 1;
@@ -559,7 +559,7 @@
       }
 
       .icon-artboard--dark {
-        --icon-artboard-background: var(--brand-black);
+        --icon-artboard-background: var(--brand-dark-base);
       }
 
       .icon-logo {
@@ -647,7 +647,7 @@
       <header class="topbar">
         <div class="topbar__brand">
           <span class="lab-mark" aria-hidden="true">
-            <muso-dojo-logo variant="icon" tone="on-dark"></muso-dojo-logo>
+            <muso-dojo-logo variant="icon" theme="dark"></muso-dojo-logo>
           </span>
           <div>
             <h1>Muso Dojo</h1>
@@ -662,17 +662,19 @@
         <div class="panel">
           <div class="controls">
             <label>
-              Logo treatment
-              <select id="tone">
-                <option value="on-dark">Light on dark</option>
-                <option value="on-light">Dark on light</option>
+              Artwork theme
+              <select id="theme">
+                <option value="dark">Dark</option>
+                <option value="light">Light</option>
+                <option value="ocean">Ocean</option>
+                <option value="purple">Purple</option>
               </select>
             </label>
 
             <label>
               Artwork background
               <select id="export-background">
-                <option value="filled">Tone filled</option>
+                <option value="filled">Theme filled</option>
                 <option value="transparent">Transparent</option>
               </select>
             </label>
@@ -688,35 +690,7 @@
         <div class="preview-grid">
           <article
             class="preview preview--wide"
-            data-background="on-dark"
-            data-height="180"
-            data-name="app-header"
-            data-width="560"
-          >
-            <div class="preview-meta">
-              <h2>App Header</h2>
-              <p>560 x 180 - compact lockup</p>
-            </div>
-
-            <div
-              class="artboard artboard--dark"
-              style="
-                --artboard-display-width: 35rem;
-                --artboard-ratio: 560 / 180;
-              "
-            >
-              <muso-dojo-logo variant="app" tone="on-dark"></muso-dojo-logo>
-            </div>
-
-            <div class="actions">
-              <button type="button" data-export="image/png">PNG</button>
-              <button type="button" data-export="image/webp">WebP</button>
-            </div>
-          </article>
-
-          <article
-            class="preview preview--wide"
-            data-background="on-dark"
+            data-background="dark"
             data-height="450"
             data-name="hero-lockup"
             data-width="1600"
@@ -733,7 +707,7 @@
                 --artboard-ratio: 1600 / 450;
               "
             >
-              <muso-dojo-logo variant="hero" tone="on-dark"></muso-dojo-logo>
+              <muso-dojo-logo variant="hero" theme="dark"></muso-dojo-logo>
             </div>
 
             <div class="actions">
@@ -744,7 +718,7 @@
 
           <article
             class="preview preview--wide"
-            data-background="on-dark"
+            data-background="dark"
             data-height="1080"
             data-name="video-title-card"
             data-width="1920"
@@ -760,7 +734,7 @@
             >
               <muso-dojo-logo
                 variant="video-title-card"
-                tone="on-dark"
+                theme="dark"
               ></muso-dojo-logo>
             </div>
 
@@ -772,7 +746,7 @@
 
           <article
             class="preview"
-            data-background="on-dark"
+            data-background="dark"
             data-height="1080"
             data-name="social-square"
             data-width="1080"
@@ -788,7 +762,7 @@
             >
               <muso-dojo-logo
                 variant="social-square"
-                tone="on-dark"
+                theme="dark"
               ></muso-dojo-logo>
             </div>
 
@@ -800,7 +774,7 @@
 
           <article
             class="preview"
-            data-background="on-dark"
+            data-background="dark"
             data-height="512"
             data-name="icon"
             data-width="512"
@@ -814,7 +788,7 @@
               class="artboard artboard--dark"
               style="--artboard-display-width: 32rem; --artboard-ratio: 1 / 1"
             >
-              <muso-dojo-logo variant="icon" tone="on-dark"></muso-dojo-logo>
+              <muso-dojo-logo variant="icon" theme="dark"></muso-dojo-logo>
             </div>
 
             <div class="actions">
@@ -825,7 +799,7 @@
 
           <article
             class="preview preview--wide"
-            data-background="on-dark"
+            data-background="dark"
             data-height="320"
             data-name="wordmark"
             data-width="1200"
@@ -844,7 +818,7 @@
             >
               <muso-dojo-logo
                 variant="wordmark"
-                tone="on-dark"
+                theme="dark"
               ></muso-dojo-logo>
             </div>
 
@@ -875,7 +849,7 @@
             data-icon-card
             data-scale="1.36"
             data-size="32"
-            data-tone="on-dark"
+            data-theme="dark"
           >
             <span class="icon-stage">
               <span class="icon-artboard icon-artboard--transparent">
@@ -883,7 +857,7 @@
                   class="icon-logo"
                   mark-frame="plain"
                   variant="icon"
-                  tone="on-dark"
+                  theme="dark"
                 ></muso-dojo-logo>
               </span>
             </span>
@@ -898,12 +872,12 @@
 
           <figure
             class="icon-card icon-card--size-180"
-            data-background="on-dark"
+            data-background="dark"
             data-filename="apple-touch-icon.png"
             data-icon-card
             data-scale="1"
             data-size="180"
-            data-tone="on-dark"
+            data-theme="dark"
           >
             <span class="icon-stage">
               <span class="icon-artboard icon-artboard--dark">
@@ -911,7 +885,7 @@
                   class="icon-logo"
                   mark-frame="plain"
                   variant="icon"
-                  tone="on-dark"
+                  theme="dark"
                 ></muso-dojo-logo>
               </span>
             </span>
@@ -931,7 +905,7 @@
             data-icon-card
             data-scale="1"
             data-size="192"
-            data-tone="on-dark"
+            data-theme="dark"
           >
             <span class="icon-stage">
               <span class="icon-artboard icon-artboard--transparent">
@@ -939,7 +913,7 @@
                   class="icon-logo"
                   mark-frame="plain"
                   variant="icon"
-                  tone="on-dark"
+                  theme="dark"
                 ></muso-dojo-logo>
               </span>
             </span>
@@ -959,7 +933,7 @@
             data-icon-card
             data-scale="1"
             data-size="512"
-            data-tone="on-dark"
+            data-theme="dark"
           >
             <span class="icon-stage">
               <span class="icon-artboard icon-artboard--transparent">
@@ -967,7 +941,7 @@
                   class="icon-logo"
                   mark-frame="plain"
                   variant="icon"
-                  tone="on-dark"
+                  theme="dark"
                 ></muso-dojo-logo>
               </span>
             </span>
@@ -982,12 +956,12 @@
 
           <figure
             class="icon-card icon-card--size-192"
-            data-background="on-dark"
+            data-background="dark"
             data-filename="icon-maskable-192x192.png"
             data-icon-card
             data-scale="1"
             data-size="192"
-            data-tone="on-dark"
+            data-theme="dark"
           >
             <span class="icon-stage">
               <span class="icon-artboard icon-artboard--dark">
@@ -995,7 +969,7 @@
                   class="icon-logo"
                   mark-frame="plain"
                   variant="icon"
-                  tone="on-dark"
+                  theme="dark"
                 ></muso-dojo-logo>
               </span>
             </span>
@@ -1010,12 +984,12 @@
 
           <figure
             class="icon-card icon-card--size-512"
-            data-background="on-dark"
+            data-background="dark"
             data-filename="icon-maskable-512x512.png"
             data-icon-card
             data-scale="1"
             data-size="512"
-            data-tone="on-dark"
+            data-theme="dark"
           >
             <span class="icon-stage">
               <span class="icon-artboard icon-artboard--dark">
@@ -1023,7 +997,7 @@
                   class="icon-logo"
                   mark-frame="plain"
                   variant="icon"
-                  tone="on-dark"
+                  theme="dark"
                 ></muso-dojo-logo>
               </span>
             </span>
@@ -1046,7 +1020,7 @@
         <div class="preview-grid">
           <article
             class="preview preview--wide"
-            data-background="on-dark"
+            data-background="dark"
             data-background-policy="filled"
             data-height="1440"
             data-name="youtube-banner"
@@ -1063,7 +1037,7 @@
             >
               <muso-dojo-logo
                 variant="youtube-banner"
-                tone="on-dark"
+                theme="dark"
               ></muso-dojo-logo>
             </div>
 
@@ -1075,7 +1049,7 @@
 
           <article
             class="preview preview--wide"
-            data-background="on-dark"
+            data-background="dark"
             data-background-policy="filled"
             data-height="500"
             data-name="play-feature-graphic"
@@ -1095,7 +1069,7 @@
             >
               <muso-dojo-logo
                 variant="play-feature"
-                tone="on-dark"
+                theme="dark"
               ></muso-dojo-logo>
             </div>
 
@@ -1110,9 +1084,9 @@
     </main>
 
     <script type="module">
-      import { BRAND_COLORS, LOGO_TONE_COLORS } from "./logo-config.mjs";
+      import { BRAND_COLORS, LOGO_THEME_COLORS } from "./logo-config.mjs";
 
-      const toneInput = document.querySelector("#tone");
+      const themeInput = document.querySelector("#theme");
       const exportBackgroundInput =
         document.querySelector("#export-background");
       const status = document.querySelector("#status");
@@ -1129,20 +1103,26 @@
         var(--checker-a) 0 75%,
         var(--checker-b) 0
       ) 0 / 1.25rem 1.25rem`;
-      const toneBackgrounds = {
-        "on-light": LOGO_TONE_COLORS["on-light"].background,
-        "on-dark": LOGO_TONE_COLORS["on-dark"].background,
-      };
-      const toneLabels = {
-        "on-light": "dark on light",
-        "on-dark": "light on dark",
+      const themeBackgrounds = Object.fromEntries(
+        Object.entries(LOGO_THEME_COLORS).map(([theme, colors]) => [
+          theme,
+          colors.background,
+        ]),
+      );
+      const themeLabels = {
+        dark: "dark theme",
+        light: "light theme",
+        ocean: "ocean theme",
+        purple: "purple theme",
       };
       const exportBackgroundLabels = {
-        filled: "tone filled canvas",
+        filled: "theme-filled canvas",
         transparent: "transparent canvas",
       };
       const backgroundValue = (background) =>
-        toneBackgrounds[background] || background || BRAND_COLORS.transparent;
+        themeBackgrounds[background] ||
+        background ||
+        BRAND_COLORS.transparent;
       for (const preview of previews) {
         const meta = preview.querySelector(".preview-meta p");
 
@@ -1155,9 +1135,9 @@
           const iconCard = logo.closest("[data-icon-card]");
           const artboard = preview?.querySelector(".artboard");
           const meta = preview?.querySelector(".preview-meta p");
-          const selectedTone = iconCard
-            ? iconCard.dataset.tone || "on-dark"
-            : toneInput.value;
+          const selectedTheme = iconCard
+            ? iconCard.dataset.theme || "dark"
+            : themeInput.value;
           const exportBackgroundMode = exportBackgroundInput.value;
           const forceFilledBackground =
             preview?.dataset.backgroundPolicy === "filled";
@@ -1166,10 +1146,10 @@
             exportBackgroundMode === BRAND_COLORS.transparent;
           const artboardBackground = isTransparentExport
             ? transparentArtboardBackground
-            : toneBackgrounds[selectedTone];
+            : themeBackgrounds[selectedTheme];
           const exportBackground = isTransparentExport
             ? BRAND_COLORS.transparent
-            : toneBackgrounds[selectedTone];
+            : themeBackgrounds[selectedTheme];
           const exportBackgroundLabel = forceFilledBackground
             ? exportBackgroundLabels.filled
             : exportBackgroundLabels[exportBackgroundMode];
@@ -1181,19 +1161,19 @@
             );
           }
 
-          logo.setAttribute("tone", selectedTone);
-          logo.removeAttribute("theme");
+          logo.setAttribute("theme", selectedTheme);
+          logo.removeAttribute("tone");
 
           if (preview && artboard && meta) {
             preview.dataset.currentBackground = exportBackground;
             artboard.style.setProperty("--artboard-bg", artboardBackground);
             artboard.classList.toggle(
               "artboard--dark",
-              selectedTone !== "on-light",
+              selectedTheme !== "light",
             );
             meta.textContent = [
               preview.dataset.sizeLabel,
-              toneLabels[selectedTone],
+              themeLabels[selectedTheme],
               exportBackgroundLabel,
             ].join(" · ");
           }
@@ -1264,7 +1244,7 @@
         const size = Number(card.dataset.size);
         const scale = Number(card.dataset.scale || "1");
         const background = backgroundValue(card.dataset.background);
-        const tone = card.dataset.tone || "on-dark";
+        const theme = card.dataset.theme || "dark";
         const innerSize = Math.max(1, Math.round(size * scale));
         const canvas = document.createElement("canvas");
         const sourceCanvas = document.createElement("canvas");
@@ -1283,7 +1263,7 @@
         logo.drawToCanvas(sourceCanvas, {
           background: BRAND_COLORS.transparent,
           height: innerSize,
-          tone,
+          theme,
           width: innerSize,
         });
 
@@ -1351,7 +1331,7 @@
         const width = Number(preview.dataset.width);
         const height = Number(preview.dataset.height);
         const name = preview.dataset.name;
-        const tone = logo.tone;
+        const theme = logo.theme;
         const extension = fileExtension(type);
         const backgroundMode =
           preview.dataset.currentBackground === BRAND_COLORS.transparent
@@ -1370,14 +1350,14 @@
             background:
               preview.dataset.currentBackground ||
               backgroundValue(preview.dataset.background),
-            filename: `${name}-${tone}${backgroundSuffix}-${width}x${height}.${extension}`,
+            filename: `${name}-${theme}${backgroundSuffix}-${width}x${height}.${extension}`,
             height,
-            tone,
+            theme,
             type,
             width,
           });
           setStatus(
-            `${name}-${tone}${backgroundSuffix}-${width}x${height}.${extension}`,
+            `${name}-${theme}${backgroundSuffix}-${width}x${height}.${extension}`,
           );
         } catch (error) {
           setStatus(error.message);
@@ -1387,7 +1367,7 @@
         }
       };
 
-      for (const input of [toneInput, exportBackgroundInput]) {
+      for (const input of [themeInput, exportBackgroundInput]) {
         input.addEventListener("input", syncLogos);
       }
 
