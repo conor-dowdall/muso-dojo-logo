@@ -83,6 +83,7 @@ export const VIEW_BOXES = {
   wordmark: { width: 1200, height: 320 },
   "social-square": { width: 1080, height: 1080 },
   "video-title-card": { width: 1920, height: 1080 },
+  "video-title-card-portrait": { width: 1080, height: 1920 },
   "play-feature": { width: 1024, height: 500 },
   "youtube-banner": { width: 2560, height: 1440 },
 };
@@ -99,6 +100,12 @@ export const STACKED_LOCKUPS = Object.freeze({
     markY: 400,
     subtitleY: 760,
     titleY: 650,
+  }),
+  "video-title-card-portrait": Object.freeze({
+    markRadius: 220,
+    markY: 820,
+    subtitleY: 1270,
+    titleY: 1150,
   }),
 });
 

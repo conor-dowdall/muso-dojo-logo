@@ -52,7 +52,6 @@
         --icon-card-text: #eeeeea;
         --caption-text: #c1c7bf;
         --caption-strong: #f5f5ef;
-        --caption-muted: #9ea69c;
         --checker-a: #111111;
         --checker-b: #252525;
         --focus-color: var(--theme-color);
@@ -187,14 +186,6 @@
         font-size: 0.95rem;
       }
 
-      .topbar__actions {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: flex-end;
-        gap: 0.75rem;
-      }
-
       .panel {
         display: grid;
         gap: 1rem;
@@ -262,6 +253,24 @@
         gap: 0.75rem;
       }
 
+      .settings__actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem 1rem;
+        padding-block-start: 0.1rem;
+        border-block-start: 1px solid var(--panel-border-color);
+      }
+
+      .settings__actions .section-copy {
+        padding-block-start: 0.85rem;
+      }
+
+      .settings__actions button {
+        margin-block-start: 0.85rem;
+      }
+
       label {
         display: grid;
         gap: 0.35rem;
@@ -303,15 +312,16 @@
 
       .preview-grid {
         display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 1rem;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0.85rem;
       }
 
       .preview {
         display: grid;
-        align-content: start;
-        gap: 0.75rem;
-        padding: 1rem;
+        grid-template-rows: minmax(3.25rem, auto) 10rem auto;
+        align-content: stretch;
+        gap: 0.65rem;
+        padding: 0.85rem;
         background: var(--panel-background-visual);
         border: 1px solid var(--panel-border-color);
         border-radius: 8px;
@@ -323,10 +333,6 @@
         border-color: var(--theme-border-color);
       }
 
-      .preview--wide {
-        grid-column: 1 / -1;
-      }
-
       .preview h2 {
         color: var(--page-text);
         font-size: 1rem;
@@ -334,20 +340,19 @@
 
       .preview p {
         color: var(--page-muted);
-        font-size: 0.9rem;
+        font-size: 0.78rem;
       }
 
       .preview-meta {
-        display: flex;
-        align-items: baseline;
-        justify-content: space-between;
-        gap: 1rem;
+        display: grid;
+        align-content: start;
+        gap: 0.15rem;
       }
 
       .artboard {
         display: grid;
         position: relative;
-        width: min(100%, var(--artboard-display-width, 100%));
+        width: min(100%, 17.5rem);
         justify-self: center;
         place-items: center;
         padding: 0;
@@ -357,6 +362,18 @@
         border-radius: 6px;
         box-shadow: var(--artboard-shadow);
         aspect-ratio: var(--artboard-ratio, 16 / 9);
+      }
+
+      .preview .artboard {
+        align-self: center;
+      }
+
+      .preview--square .artboard {
+        width: min(100%, 10rem);
+      }
+
+      .preview--portrait .artboard {
+        width: min(100%, 5.625rem);
       }
 
       .artboard--dark {
@@ -404,8 +421,8 @@
 
       .preview .actions {
         display: grid;
-        width: min(100%, 16.5rem);
-        align-self: start;
+        width: min(100%, 13rem);
+        align-self: end;
         align-items: start;
         justify-self: center;
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -413,6 +430,10 @@
 
       .preview .actions button {
         width: 100%;
+      }
+
+      .preview .actions button:only-child {
+        grid-column: 1 / -1;
       }
 
       button {
@@ -465,8 +486,8 @@
         transform: translateY(-1px);
       }
 
-      button[data-export-icons] {
-        min-width: 10.75rem;
+      button[data-export-all] {
+        min-width: 12.25rem;
       }
 
       button:disabled {
@@ -491,9 +512,13 @@
         margin-block-start: 1.85rem;
       }
 
+      .platform-art .preview-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
       .icon-list {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
+        grid-template-columns: repeat(6, minmax(0, 1fr));
         gap: 0.75rem;
       }
 
@@ -520,8 +545,8 @@
 
       .icon-stage {
         display: grid;
-        aspect-ratio: 1;
-        padding: 0.75rem;
+        min-height: 7.5rem;
+        padding: 0.6rem;
         overflow: hidden;
         place-items: center;
         background: var(--icon-stage-background);
@@ -581,12 +606,10 @@
       }
 
       .icon-card--size-512 {
-        --icon-preview-size: 8.5rem;
+        --icon-preview-size: 6rem;
       }
 
       figcaption {
-        display: grid;
-        gap: 0.1rem;
         color: var(--caption-text);
         font-size: 0.85rem;
         text-align: center;
@@ -597,15 +620,34 @@
         font-size: 0.9rem;
       }
 
-      figcaption span {
-        color: var(--caption-muted);
-        font-size: 0.78rem;
+      .status {
+        position: fixed;
+        z-index: 10;
+        inset-block-end: 1rem;
+        inset-inline-end: 1rem;
+        max-width: min(28rem, calc(100% - 2rem));
+        margin: 0;
+        padding: 0.65rem 0.8rem;
+        color: var(--theme-color-strong);
+        background: rgb(8 9 13 / 0.94);
+        border: 1px solid var(--theme-border-color);
+        border-radius: 6px;
+        box-shadow: var(--panel-shadow);
+        font-size: 0.9rem;
       }
 
-      .status {
-        min-height: 1.5rem;
-        color: var(--theme-color-strong);
-        font-size: 0.9rem;
+      .status:empty {
+        display: none;
+      }
+
+      @media (max-width: 70rem) {
+        .preview-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .icon-list {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
       }
 
       @media (max-width: 50rem) {
@@ -618,25 +660,38 @@
           align-items: start;
         }
 
-        .topbar__actions {
-          justify-content: start;
-        }
-
         .controls {
           grid-template-columns: 1fr;
         }
 
-        .preview-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .preview--wide {
-          grid-column: auto;
+        .icon-list {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
         }
 
         .section-header {
           display: grid;
           align-items: start;
+        }
+      }
+
+      @media (max-width: 38rem) {
+        .preview-grid,
+        .platform-art .preview-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .settings__actions {
+          display: grid;
+        }
+
+        .settings__actions button {
+          width: 100%;
+        }
+      }
+
+      @media (max-width: 30rem) {
+        .icon-list {
+          grid-template-columns: 1fr;
         }
       }
     </style>
@@ -679,35 +734,43 @@
               </select>
             </label>
           </div>
+          <div class="settings__actions">
+            <p class="section-copy">
+              Packages every listed format using these settings.
+            </p>
+            <button type="button" data-export-all>Download all assets</button>
+          </div>
         </div>
       </section>
 
       <section class="variants" aria-labelledby="variants-title">
         <div class="section-header">
-          <h2 class="section-title" id="variants-title">Logo Variants</h2>
+          <div class="section-header__copy">
+            <h2 class="section-title" id="variants-title">Brand & Content</h2>
+            <p class="section-copy">
+              Compact previews; downloads use the full dimensions shown.
+            </p>
+          </div>
         </div>
 
         <div class="preview-grid">
           <article
-            class="preview preview--wide"
+            class="preview preview--square"
             data-background="dark"
-            data-height="450"
-            data-name="hero-lockup"
-            data-width="1600"
+            data-height="512"
+            data-name="icon"
+            data-width="512"
           >
             <div class="preview-meta">
-              <h2>Hero Lockup</h2>
-              <p>1600 x 450</p>
+              <h2>Icon</h2>
+              <p>512 x 512</p>
             </div>
 
             <div
               class="artboard artboard--dark"
-              style="
-                --artboard-display-width: 100rem;
-                --artboard-ratio: 1600 / 450;
-              "
+              style="--artboard-ratio: 1 / 1"
             >
-              <muso-dojo-logo variant="hero" theme="dark"></muso-dojo-logo>
+              <muso-dojo-logo variant="icon" theme="dark"></muso-dojo-logo>
             </div>
 
             <div class="actions">
@@ -717,23 +780,23 @@
           </article>
 
           <article
-            class="preview preview--wide"
+            class="preview"
             data-background="dark"
-            data-height="1080"
-            data-name="video-title-card"
-            data-width="1920"
+            data-height="320"
+            data-name="wordmark"
+            data-width="1200"
           >
             <div class="preview-meta">
-              <h2>Video Title Card</h2>
-              <p>1920 x 1080</p>
+              <h2>Wordmark</h2>
+              <p>1200 x 320</p>
             </div>
 
             <div
               class="artboard artboard--dark"
-              style="--artboard-display-width: 120rem; --artboard-ratio: 16 / 9"
+              style="--artboard-ratio: 1200 / 320"
             >
               <muso-dojo-logo
-                variant="video-title-card"
+                variant="wordmark"
                 theme="dark"
               ></muso-dojo-logo>
             </div>
@@ -747,6 +810,31 @@
           <article
             class="preview"
             data-background="dark"
+            data-height="450"
+            data-name="hero-lockup"
+            data-width="1600"
+          >
+            <div class="preview-meta">
+              <h2>Hero Lockup</h2>
+              <p>1600 x 450</p>
+            </div>
+
+            <div
+              class="artboard artboard--dark"
+              style="--artboard-ratio: 1600 / 450"
+            >
+              <muso-dojo-logo variant="hero" theme="dark"></muso-dojo-logo>
+            </div>
+
+            <div class="actions">
+              <button type="button" data-export="image/png">PNG</button>
+              <button type="button" data-export="image/webp">WebP</button>
+            </div>
+          </article>
+
+          <article
+            class="preview preview--square"
+            data-background="dark"
             data-height="1080"
             data-name="social-square"
             data-width="1080"
@@ -758,7 +846,7 @@
 
             <div
               class="artboard artboard--dark"
-              style="--artboard-display-width: 67.5rem; --artboard-ratio: 1 / 1"
+              style="--artboard-ratio: 1 / 1"
             >
               <muso-dojo-logo
                 variant="social-square"
@@ -775,20 +863,23 @@
           <article
             class="preview"
             data-background="dark"
-            data-height="512"
-            data-name="icon"
-            data-width="512"
+            data-height="1080"
+            data-name="video-title-card"
+            data-width="1920"
           >
             <div class="preview-meta">
-              <h2>Icon</h2>
-              <p>512 x 512</p>
+              <h2>Video Title Card</h2>
+              <p>1920 x 1080</p>
             </div>
 
             <div
               class="artboard artboard--dark"
-              style="--artboard-display-width: 32rem; --artboard-ratio: 1 / 1"
+              style="--artboard-ratio: 16 / 9"
             >
-              <muso-dojo-logo variant="icon" theme="dark"></muso-dojo-logo>
+              <muso-dojo-logo
+                variant="video-title-card"
+                theme="dark"
+              ></muso-dojo-logo>
             </div>
 
             <div class="actions">
@@ -798,26 +889,23 @@
           </article>
 
           <article
-            class="preview preview--wide"
+            class="preview preview--portrait"
             data-background="dark"
-            data-height="320"
-            data-name="wordmark"
-            data-width="1200"
+            data-height="1920"
+            data-name="video-title-card-portrait"
+            data-width="1080"
           >
             <div class="preview-meta">
-              <h2>Wordmark</h2>
-              <p>1200 x 320</p>
+              <h2>Portrait Video Title Card</h2>
+              <p>1080 x 1920</p>
             </div>
 
             <div
               class="artboard artboard--dark"
-              style="
-                --artboard-display-width: 75rem;
-                --artboard-ratio: 1200 / 320;
-              "
+              style="--artboard-ratio: 9 / 16"
             >
               <muso-dojo-logo
-                variant="wordmark"
+                variant="video-title-card-portrait"
                 theme="dark"
               ></muso-dojo-logo>
             </div>
@@ -839,7 +927,6 @@
               from the live logo.
             </p>
           </div>
-          <button type="button" data-export-icons>Export all PNGs</button>
         </div>
         <div class="icon-list">
           <figure
@@ -863,7 +950,6 @@
             </span>
             <figcaption>
               <strong>Favicon 32</strong>
-              <span>Transparent enlarged plain-mark PNG</span>
             </figcaption>
             <div class="actions">
               <button type="button" data-icon-export>PNG</button>
@@ -891,7 +977,6 @@
             </span>
             <figcaption>
               <strong>Apple 180</strong>
-              <span>Near-black full-bleed PNG</span>
             </figcaption>
             <div class="actions">
               <button type="button" data-icon-export>PNG</button>
@@ -919,7 +1004,6 @@
             </span>
             <figcaption>
               <strong>PWA 192</strong>
-              <span>Transparent plain-mark PNG</span>
             </figcaption>
             <div class="actions">
               <button type="button" data-icon-export>PNG</button>
@@ -947,7 +1031,6 @@
             </span>
             <figcaption>
               <strong>PWA 512</strong>
-              <span>Transparent plain-mark PNG</span>
             </figcaption>
             <div class="actions">
               <button type="button" data-icon-export>PNG</button>
@@ -975,7 +1058,6 @@
             </span>
             <figcaption>
               <strong>Maskable 192</strong>
-              <span>Near-black maskable PNG</span>
             </figcaption>
             <div class="actions">
               <button type="button" data-icon-export>PNG</button>
@@ -1003,7 +1085,6 @@
             </span>
             <figcaption>
               <strong>Maskable 512</strong>
-              <span>Near-black maskable PNG</span>
             </figcaption>
             <div class="actions">
               <button type="button" data-icon-export>PNG</button>
@@ -1019,7 +1100,7 @@
 
         <div class="preview-grid">
           <article
-            class="preview preview--wide"
+            class="preview"
             data-background="dark"
             data-background-policy="filled"
             data-height="1440"
@@ -1033,7 +1114,7 @@
 
             <div
               class="artboard artboard--dark artboard--youtube"
-              style="--artboard-display-width: 128rem; --artboard-ratio: 16 / 9"
+              style="--artboard-ratio: 16 / 9"
             >
               <muso-dojo-logo
                 variant="youtube-banner"
@@ -1048,7 +1129,7 @@
           </article>
 
           <article
-            class="preview preview--wide"
+            class="preview"
             data-background="dark"
             data-background-policy="filled"
             data-height="500"
@@ -1062,10 +1143,7 @@
 
             <div
               class="artboard artboard--dark"
-              style="
-                --artboard-display-width: 64rem;
-                --artboard-ratio: 1024 / 500;
-              "
+              style="--artboard-ratio: 1024 / 500"
             >
               <muso-dojo-logo
                 variant="play-feature"
@@ -1085,6 +1163,7 @@
 
     <script type="module">
       import { BRAND_COLORS, LOGO_THEME_COLORS } from "./logo-config.mjs";
+      import { createZip } from "./zip.mjs";
 
       const themeInput = document.querySelector("#theme");
       const exportBackgroundInput =
@@ -1208,8 +1287,11 @@
 
         link.href = url;
         link.download = filename;
+        link.hidden = true;
+        document.body.append(link);
         link.click();
-        setTimeout(() => URL.revokeObjectURL(url), 0);
+        link.remove();
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
       };
 
       const assertIconBackground = (canvas, background) => {
@@ -1300,34 +1382,8 @@
         }
       };
 
-      const exportIcons = async (button) => {
-        const previousLabel = button.textContent;
-
-        button.disabled = true;
-        button.textContent = "Exporting";
-        setStatus("");
-
-        try {
-          for (const card of iconCards) {
-            const canvas = await iconCanvas(card);
-            const blob = await canvasToBlob(canvas);
-
-            downloadBlob(blob, card.dataset.filename);
-          }
-
-          setStatus(`${iconCards.length} icon PNGs exported`);
-        } catch (error) {
-          setStatus(error.message);
-        } finally {
-          button.disabled = false;
-          button.textContent = previousLabel;
-        }
-      };
-
-      const exportLogo = async (button) => {
-        const preview = button.closest(".preview");
+      const logoExport = async (preview, type) => {
         const logo = preview.querySelector("muso-dojo-logo");
-        const type = button.dataset.export;
         const width = Number(preview.dataset.width);
         const height = Number(preview.dataset.height);
         const name = preview.dataset.name;
@@ -1339,6 +1395,23 @@
             : "filled";
         const backgroundSuffix =
           backgroundMode === BRAND_COLORS.transparent ? "-transparent" : "";
+        const filename = `${name}-${theme}${backgroundSuffix}-${width}x${height}.${extension}`;
+        const blob = await logo.toBlob({
+          background:
+            preview.dataset.currentBackground ||
+            backgroundValue(preview.dataset.background),
+          height,
+          theme,
+          type,
+          width,
+        });
+
+        return { blob, filename };
+      };
+
+      const exportLogo = async (button) => {
+        const preview = button.closest(".preview");
+        const type = button.dataset.export;
         const previousLabel = button.textContent;
 
         button.disabled = true;
@@ -1346,19 +1419,76 @@
         setStatus("");
 
         try {
-          await logo.download({
-            background:
-              preview.dataset.currentBackground ||
-              backgroundValue(preview.dataset.background),
-            filename: `${name}-${theme}${backgroundSuffix}-${width}x${height}.${extension}`,
-            height,
-            theme,
-            type,
-            width,
-          });
-          setStatus(
-            `${name}-${theme}${backgroundSuffix}-${width}x${height}.${extension}`,
-          );
+          const { blob, filename } = await logoExport(preview, type);
+
+          downloadBlob(blob, filename);
+          setStatus(`${filename} exported`);
+        } catch (error) {
+          setStatus(error.message);
+        } finally {
+          button.disabled = false;
+          button.textContent = previousLabel;
+        }
+      };
+
+      const exportAllAssets = async (button) => {
+        const previousLabel = button.textContent;
+        const previewJobs = previews.flatMap((preview) =>
+          [...preview.querySelectorAll("button[data-export]")].map(
+            (exportButton) => ({
+              folder: preview.closest(".platform-art")
+                ? "store-and-channel"
+                : "brand-and-content",
+              preview,
+              type: exportButton.dataset.export,
+            }),
+          ),
+        );
+        const total = previewJobs.length + iconCards.length;
+        const entries = [];
+        let completed = 0;
+
+        button.disabled = true;
+        setStatus("");
+
+        try {
+          for (const job of previewJobs) {
+            const { blob, filename } = await logoExport(
+              job.preview,
+              job.type,
+            );
+
+            entries.push({
+              data: blob,
+              name: `${job.folder}/${filename}`,
+            });
+            completed += 1;
+            button.textContent = `Preparing ${completed}/${total}`;
+          }
+
+          for (const card of iconCards) {
+            const canvas = await iconCanvas(card);
+            const blob = await canvasToBlob(canvas);
+
+            entries.push({
+              data: blob,
+              name: `app-icons/${card.dataset.filename}`,
+            });
+            completed += 1;
+            button.textContent = `Preparing ${completed}/${total}`;
+          }
+
+          button.textContent = "Packaging";
+
+          const archive = await createZip(entries);
+          const archiveName = [
+            "muso-dojo-assets",
+            themeInput.value,
+            exportBackgroundInput.value,
+          ].join("-");
+
+          downloadBlob(archive, `${archiveName}.zip`);
+          setStatus(`${entries.length} assets exported in ${archiveName}.zip`);
         } catch (error) {
           setStatus(error.message);
         } finally {
@@ -1372,17 +1502,17 @@
       }
 
       document.addEventListener("click", (event) => {
+        const allAssetsButton = event.target.closest("button[data-export-all]");
         const iconButton = event.target.closest("button[data-icon-export]");
-        const iconSetButton = event.target.closest("button[data-export-icons]");
         const button = event.target.closest("button[data-export]");
 
-        if (iconButton) {
-          exportIcon(iconButton);
+        if (allAssetsButton) {
+          exportAllAssets(allAssetsButton);
           return;
         }
 
-        if (iconSetButton) {
-          exportIcons(iconSetButton);
+        if (iconButton) {
+          exportIcon(iconButton);
           return;
         }
 

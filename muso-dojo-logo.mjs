@@ -90,6 +90,10 @@ class MusoDojoLogo extends HTMLElement {
           --_muso-logo-aspect: 16 / 9;
         }
 
+        :host([variant="video-title-card-portrait"]) {
+          --_muso-logo-aspect: 9 / 16;
+        }
+
         :host([variant="play-feature"]) {
           --_muso-logo-aspect: 1024 / 500;
         }
@@ -330,8 +334,11 @@ class MusoDojoLogo extends HTMLElement {
     link.download =
       filename ||
       `muso-dojo-logo-${this.variant}-${exportTheme}-${width}x${height}.${extension}`;
+    link.hidden = true;
+    document.body.append(link);
     link.click();
-    setTimeout(() => URL.revokeObjectURL(url), 0);
+    link.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
   }
 
   drawToCanvas(
@@ -426,6 +433,9 @@ class MusoDojoLogo extends HTMLElement {
       case "video-title-card":
         this.#renderVideoTitleCard();
         return;
+      case "video-title-card-portrait":
+        this.#renderVideoTitleCardPortrait(box);
+        return;
       case "play-feature":
         this.#renderPlayFeature();
         return;
@@ -500,6 +510,13 @@ class MusoDojoLogo extends HTMLElement {
 
   #renderVideoTitleCard() {
     this.#appendHorizontalLockup(HORIZONTAL_LOCKUPS["video-title-card"]);
+  }
+
+  #renderVideoTitleCardPortrait(box) {
+    this.#renderStacked(
+      box,
+      STACKED_LOCKUPS["video-title-card-portrait"],
+    );
   }
 
   #renderPlayFeature() {
@@ -743,6 +760,9 @@ class MusoDojoLogo extends HTMLElement {
       case "video-title-card":
         this.#drawVideoTitleCard(context, colors);
         return;
+      case "video-title-card-portrait":
+        this.#drawVideoTitleCardPortrait(context, box, colors);
+        return;
       case "play-feature":
         this.#drawPlayFeature(context, colors);
         return;
@@ -827,6 +847,15 @@ class MusoDojoLogo extends HTMLElement {
       context,
       colors,
       HORIZONTAL_LOCKUPS["video-title-card"],
+    );
+  }
+
+  #drawVideoTitleCardPortrait(context, box, colors) {
+    this.#drawStacked(
+      context,
+      box,
+      colors,
+      STACKED_LOCKUPS["video-title-card-portrait"],
     );
   }
 

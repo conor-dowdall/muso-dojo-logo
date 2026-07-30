@@ -10,6 +10,7 @@ GitHub Pages: https://conor-dowdall.github.io/muso-dojo-logo/
 - `index.html`: the logo lab UI.
 - `muso-dojo-logo.mjs`: the `<muso-dojo-logo>` web component.
 - `logo-config.mjs`: shared brand, size, color, and lockup constants.
+- `zip.mjs`: dependency-free ZIP packaging for bulk asset downloads.
 - `Stick-Regular.ttf`: the bundled Stick font.
 - `OFL.txt`: the Stick font license.
 - `site.webmanifest`: example PWA install metadata.
@@ -33,6 +34,7 @@ Variants:
 - `wordmark`: title and subtitle only.
 - `social-square`: square social artwork with a centered stacked lockup.
 - `video-title-card`: 1920 x 1080 video title artwork.
+- `video-title-card-portrait`: 1080 x 1920 portrait video title artwork.
 - `play-feature`: 1024 x 500 Google Play feature graphic on a filled dark
   canvas.
 - `youtube-banner`: 2560 x 1440 channel banner with the critical lockup inside
@@ -88,11 +90,13 @@ logo theme and artwork background. The brand title, subtitle, and mark are
 fixed in the component. Artwork background defaults to `Theme filled`, which
 is the recommended finished-export setting. Use `Transparent` when you want a
 reusable source layer for GIMP or another composition tool. Export buttons
-generate PNG or WebP files from the live component. The Play feature graphic
-card exports a PNG for Google Play's 1024 x 500 requirement. The Play feature
-graphic and YouTube banner live in a separate store/channel section because
-they always use filled canvases. The YouTube banner preview includes crop
-guides for placement, but those guides are not included in exported files.
+generate PNG or WebP files from the live component. `Download all assets`
+packages every listed format into one ZIP, organized into brand/content, app
+icon, and store/channel folders. The Play feature graphic card exports a PNG
+for Google Play's 1024 x 500 requirement. The Play feature graphic and YouTube
+banner live in a separate store/channel section because they always use filled
+canvases. The YouTube banner preview includes crop guides for placement, but
+those guides are not included in exported files.
 
 ## Brand Placement
 
